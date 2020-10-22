@@ -9,28 +9,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent, onMounted } from 'vue'
 
 export default defineComponent({
-    name: "tab",
+    name: 'tab',
     setup() {
         onMounted(() => {
-            console.log(this);
-        });
-        async function timeout(ms: number) {
-            // return new Promise(resolve => {
-            setTimeout(() => ms);
-            // });
-        }
-
-        async function asyncPrint(value: string, ms: number) {
-            await timeout(ms);
-            console.log(value);
-        }
-
-        asyncPrint("hello world", 2000);
-    },
-});
+            console.log(this)
+            
+        })
+    }
+})
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -19,19 +19,15 @@ componentsContext.keys().forEach(component => {
 })
 
 // 引入Vant 组件
-import Vant from 'vant';
-import 'vant/lib/index.css';
+import Vant from 'vant'
+import 'vant/lib/index.css'
 
+import { instance, axios } from './api/index'
 
-import {api,axios} from './api/index'
-
-app.config.globalProperties.$api = api
+app.config.globalProperties.$api = instance
 app.config.globalProperties.$axios = axios
-
-
 
 // 初始化rem
 import '@/utils/rem'
-
 
 app.use(Vant).use(store).use(router).mount('#app')

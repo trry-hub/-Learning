@@ -1,0 +1,86 @@
+<template>
+    <div>
+        <page-header :title="$route.name == 'XX' ? '新增XX' : '编辑XX'">
+            <el-button icon="el-icon-arrow-left" size="mini" round @click="$router.go(-1)">返回</el-button>
+        </page-header>
+        <page-main>
+            <el-row>
+                <el-col :md="24" :lg="16">
+                    <el-form ref="form" :model="form" :rules="rules" label-width="120px" label-suffix="：">
+                        <el-form-item />
+                    </el-form>
+                </el-col>
+            </el-row>
+        </page-main>
+        <fixed-action-bar>
+            <el-button type="primary" @click="onSubmit">提交</el-button>
+            <el-button @click="onCancel">取消</el-button>
+        </fixed-action-bar>
+    </div>
+</template>
+
+<script>
+export default {
+    name: '{{ properCase componentName }}',
+    props: {},
+    data() {
+        return {
+            form: {},
+            rules: {}
+        }
+    },
+    created() {},
+    mounted() {
+        if (this.$route.params.id) {
+            this.getInfo()
+        }
+    },
+    methods: {
+        getInfo() {
+            this.$api.get('XX', {
+                params: {
+                    id: this.$route.params.id
+                }
+            }).then(res => {
+                console.log(res)
+            })
+        },
+        onSubmit() {
+            if (this.$route.params.id) {
+                this.$refs['form'].validate(valid => {
+                    if (valid) {
+                        this.$api.post('XX', Object.assign(this.form, {
+                            id: this.$route.params.id
+                        })).then(() => {
+                            this.$message.success({
+                                message: '编辑成功',
+                                center: true
+                            })
+                            this.$router.back()
+                        })
+                    }
+                })
+            } else {
+                this.$refs['form'].validate(valid => {
+                    if (valid) {
+                        this.$api.post('XX', this.form).then(() => {
+                            this.$message.success({
+                                message: '新增成功',
+                                center: true
+                            })
+                            this.$router.back()
+                        })
+                    }
+                })
+            }
+        },
+        onCancel() {
+            this.$router.back()
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+// scss
+</style>

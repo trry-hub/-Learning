@@ -1,0 +1,24 @@
+<template>
+    <div class="{{ kebabCase componentName }}">
+        <!-- {{kebabCase componentName}} 组件-->
+        
+    </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: '{{properCase componentName}}',
+  components: {
+    // HelloWorld,
+  },
+  setUp(){}
+});
+</script>
+
+<style scoped lang="scss">
+ .{{ kebabCase componentName }} {
+     // {{kebabCase componentName}} 组件
+ }
+</style>

@@ -1,0 +1,96 @@
+<template>
+    <div>
+        <page-header title="XX管理" />
+        <page-main>
+            <el-button type="primary" icon="el-icon-plus" @click="onCreate">新增XX</el-button>
+            <search-bar>
+                <el-form :model="search" size="small" label-width="100px" label-suffix="：">
+                    <el-row>
+                        <el-col :span="12">
+                            <el-form-item />
+                        </el-col>
+                    </el-row>
+                    <el-form-item>
+                        <el-button type="primary" icon="el-icon-search" @click="getDataList">筛选</el-button>
+                    </el-form-item>
+                </el-form>
+            </search-bar>
+            <el-table v-loading="loading" class="list-table" :data="dataList" border stripe highlight-current-row @sort-change="onSortChange">
+                <el-table-column prop="name" label="名称" />
+                <el-table-column label="操作" width="250" align="center">
+                    <template slot-scope="scope">
+                        <el-button type="primary" size="mini" plain @click="onEdit(scope.row)">编辑</el-button>
+                        <el-button type="danger" size="mini" plain @click="onDel(scope.row)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <el-pagination :current-page="pagination.page" :total="pagination.total" :page-size="pagination.size" :page-sizes="pagination.sizes" :layout="pagination.layout" :hide-on-single-page="false" class="pagination" background @size-change="onSizeChange" @current-change="onCurrentChange" />
+        </page-main>
+    </div>
+</template>
+
+<script>
+import paginationMixin from '@/mixins/pagination'
+
+export default {
+    name: '{{ properCase componentName }}',
+    mixins: [paginationMixin],
+    props: {},
+    data() {
+        return {
+            search: {},
+            dataList: []
+        }
+    },
+    created() {},
+    mounted() {
+        this.getDataList()
+    },
+    methods: {
+        getDataList() {
+            this.loading = true
+            const params = {
+                from: this.pagination.page,
+                limit: this.pagination.size
+            }
+            this.$api.get('XX', {
+                params: params
+            }).then(res => {
+                this.loading = false
+                this.dataList = res.data.list
+                this.pagination.total = res.data.count
+            })
+        },
+        onCreate() {
+            this.$router.push({
+                name: 'XX'
+            })
+        },
+        onEdit(row) {
+            this.$router.push({
+                name: 'XX',
+                params: {
+                    id: row.id
+                }
+            })
+        },
+        onDel(row) {
+            this.$confirm(`确认删除「${row.name}」吗？`, '确认信息').then(() => {
+                this.$api.post('XX', {
+                    id: row.id
+                }).then(() => {
+                    this.getDataList()
+                    this.$message.success({
+                        message: '操作成功',
+                        center: true
+                    })
+                })
+            }).catch(() => {})
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+// scss
+</style>

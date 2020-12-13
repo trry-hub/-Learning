@@ -1,3 +1,10 @@
+<!--
+ * @Author: trry
+ * @Date: 2020-11-29 21:27:08
+ * @LastEditors: trry
+ * @LastEditTime: 2020-11-29 22:00:42
+ * @Description: file content
+-->
 <template>
     <div class="home">
         <img alt="Vue logo" src="../assets/logo.png">
@@ -8,7 +15,7 @@
     </div>
 </template>
 
-<script lang='ts'>
+<script lang='ts' scoped>
 import { defineComponent, ref, reactive } from 'vue'
 // import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 

@@ -1,43 +1,42 @@
+<!--
+ * @Author: trry
+ * @Date: 2020-10-15 10:12:22
+ * @LastEditors: trry
+ * @LastEditTime: 2020-11-09 17:29:43
+ * @Description: file content
+-->
 <template>
     <div class="home">
-        <img alt="Vue logo" src="../assets/logo.png">
-        <div>{{ count }} --- {{ obj.name }}</div>
-        <button @click="onClick">按钮</button>
-        <tab />
-        <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+        <Nav />
+        <van-tabs v-model="activeName" color="#fff" background="#D5453A" line-width="30px" line-height="2px" title-inactive-color="#fff" title-active-color="#fff">
+            <van-tab title="推荐" name="a">
+                <Recommend />
+            </van-tab>
+            <van-tab title="排行" name="b">排行</van-tab>
+            <van-tab title="歌手" name="c">
+                <Singer />
+            </van-tab>
+        </van-tabs>
     </div>
 </template>
 
 <script lang='ts'>
-import { defineComponent, ref, reactive } from 'vue'
-// import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
     name: 'Home',
     setup() {
-        const count = ref(0)
-        const obj = reactive({ name: 'xiaoli' })
-        
-        /**
-         * ref 返回一个对象 使用时可用 .value 获取值以及更改
-         * reactive 
-         */
-        function onClick() {
-            console.log(count)
-            
-            count.value = count.value + 1
-            
-            console.log(count.value)
-        }
+        let activeName = ref('a')
         
         return {
-            count,
-            obj,
-            onClick
+            activeName
         }
     }
 })
 </script>
 <style lang='scss' scoped>
 // scss
+::v-deep .van-tabs__nav--line{
+    padding-bottom: 6px;
+}
 </style>

@@ -1,8 +1,14 @@
 <!--
  * @Author: trry
+<<<<<<< HEAD
  * @Date: 2020-10-15 10:12:22
  * @LastEditors: trry
  * @LastEditTime: 2020-11-09 17:29:43
+=======
+ * @Date: 2020-11-29 21:27:08
+ * @LastEditors: trry
+ * @LastEditTime: 2020-11-29 22:00:42
+>>>>>>> a6a36a6bf5b0dfd306fedcfc78b5c4a8d3bef0e2
  * @Description: file content
 -->
 <template>
@@ -20,8 +26,14 @@
     </div>
 </template>
 
+<<<<<<< HEAD
 <script lang='ts'>
 import { defineComponent, ref } from 'vue'
+=======
+<script lang='ts' scoped>
+import { defineComponent, ref, reactive } from 'vue'
+// import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+>>>>>>> a6a36a6bf5b0dfd306fedcfc78b5c4a8d3bef0e2
 
 export default defineComponent({
     name: 'Home',

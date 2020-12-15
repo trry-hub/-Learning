@@ -1,5 +1,14 @@
 <!--
  * @Author: trry
+<<<<<<< HEAD
+ * @Date: 2020-10-15 10:12:22
+ * @LastEditors: trry
+ * @LastEditTime: 2020-11-09 16:43:55
+ * @Description: file content
+-->
+<template>
+    <div>
+=======
  * @Date: 2020-11-29 21:27:08
  * @LastEditors: trry
  * @LastEditTime: 2020-11-29 22:03:20
@@ -10,29 +19,11 @@
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link>
         <router-link to="/suspense">Suspense</router-link>
+>>>>>>> a6a36a6bf5b0dfd306fedcfc78b5c4a8d3bef0e2
         <router-view />
     </div>
 </template>
 
 <style lang="scss">
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-}
 
-#nav {
-    padding: 30px;
-
-    a {
-        font-weight: bold;
-        color: #2c3e50;
-
-        &.router-link-exact-active {
-            color: #42b983;
-        }
-    }
-}
 </style>

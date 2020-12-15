@@ -12,7 +12,7 @@
 import { defineComponent, onMounted } from 'vue'
 
 export default defineComponent({
-    name: 'tab',
+    name: 'Tab',
     setup() {
         onMounted(() => {
             console.log(this)

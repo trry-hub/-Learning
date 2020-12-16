@@ -6,8 +6,9 @@ const toLogin = () =>{
 
 }
 
+// process.env.NODE_ENV !== 'development' &&
 const instance = axios.create({
-    baseURL: process.env.NODE_ENV !== 'development' && process.env.REACT_APP_API_URL,
+    baseURL:  process.env.REACT_APP_API_URL,
     timeout: 10000,
     responseType: 'json'
 })

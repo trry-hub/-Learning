@@ -4,10 +4,13 @@ import './index.css';
 import App from './layout/App';
 import reportWebVitals from './reportWebVitals';
 
+import Hello from './components/TabBar'
+
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <Hello />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,13 +1,7 @@
-<!--
- * @Author: trry
- * @Date: 2020-11-09 17:00:16
- * @LastEditors: trry
- * @LastEditTime: 2020-11-09 17:36:23
- * @Description: file content
--->
 <template>
     <div class="slide-wrapper">
         <div class="slide-content">
+            234234
             <div class="slide-page" />
             <div class="slide-page" />
             <div class="slide-page" />

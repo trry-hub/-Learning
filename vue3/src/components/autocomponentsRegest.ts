@@ -8,6 +8,6 @@ componentsContext.keys().forEach(component => {
     if (/.vue$/.test(component)) {
         app.component(componentConfig.name, componentConfig)
     } else {
-        app.use(componentConfig)
+        // app.use(componentConfig)
     }
 })

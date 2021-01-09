@@ -1,7 +1,7 @@
 module.exports = function (plop) {
     plop.setGenerator("page", require("./plop-template/page/prompt"));
 
-    plop.setGenerator("component", require("./plop-template/component/prompt"));
+    plop.setGenerator("components", require("./plop-template/components/prompt"));
 
     plop.setGenerator("store", require("./plop-template/store/prompt"));
 

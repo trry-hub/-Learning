@@ -1,10 +1,3 @@
-<!--
- * @Author: trry
- * @Date: 2020-11-29 21:34:47
- * @LastEditors: trry
- * @LastEditTime: 2020-11-29 22:00:55
- * @Description: file content
--->
 <template>
     <div class="Suspense">123</div>
 </template>

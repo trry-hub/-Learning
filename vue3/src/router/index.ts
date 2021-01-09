@@ -1,18 +1,15 @@
-/*
- * @Author: trry
- * @Date: 2020-11-29 21:27:08
- * @LastEditors: trry
- * @LastEditTime: 2020-11-29 22:11:27
- * @Description: file content
- */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
 
 const routes: Array<RouteRecordRaw> = [
     {
+        path: '/login',
+        name: 'Login',
+        component: () => import(/* webpackChunkName: "Login" */ '../views/login/Login.vue')
+    },
+    {
         path: '/',
         name: 'Home',
-        component: Home
+        component: () => import(/* webpackChunkName: "Home" */ '../views/Home.vue')
     },
     {
         path: '/about',
@@ -26,6 +23,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/suspense',
         name: 'Suspense',
         component: () => import(/* webpackChunkName: "suspense" */ '../views/Suspense.vue')
+    },
+    {
+        path: '*',
+        name: '404',
+        component: () => import(/* webpackChunkName: "suspense" */ '../views/404.vue')
     }
 ]
 

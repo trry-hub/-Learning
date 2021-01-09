@@ -1,10 +1,3 @@
-/*
- * @Author: trry
- * @Date: 2020-09-21 16:51:26
- * @LastEditors: trry
- * @LastEditTime: 2020-11-09 14:15:45
- * @Description: file content
- */
 // import { app, defineComponent } from '@/import.ts'
 
 // const component = require('./index.vue').default

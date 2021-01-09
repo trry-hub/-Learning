@@ -1,13 +1,6 @@
-<!--
- * @Author: trry
- * @Date: 2020-11-09 11:11:49
- * @LastEditors: trry
- * @LastEditTime: 2020-11-09 18:07:36
- * @Description: file content
--->
 <template>
     <div class="nav">
-        <van-nav-bar :title="title" :left-text="backText" :right-text="rightText" :fixed="true" :placeholder="true" :safe-area-inset-top="true" :border="border" :left-arrow="false" @click-left="onClickLeft" @click-right="onClickRight">
+        <van-nav-bar :title="title" :left-text="backText" :right-text="rightText.value" :fixed="true" :placeholder="true" :safe-area-inset-top="true" :border="border" :left-arrow="false" @click-left="onClickLeft" @click-right="onClickRight">
             <template #left>
                 <van-icon name="wap-nav" size="30" color="#fff" />
             </template>
@@ -24,7 +17,7 @@ interface parentDataType {
 	title: string;
 	border: boolean;
     backText: string;
-    rightText: string
+    [propName: string]:any
 }
 export default defineComponent({
     name: 'Nav',
@@ -36,22 +29,29 @@ export default defineComponent({
         border: {
             type: Boolean,
             default: false
+        },
+        backText: {
+            type: String,
+            default: '默认内容'
+        },
+        rightText: {
+            type: String,
+            default: '返回'
         }
     },
     setup(props) {
-        // let {title, border, backText} = props
-        // let parentData: parentDataType = reactive(props)
+        let data:parentDataType = reactive(Object.assign({}, props))
 
         const onClickLeft = () => {
             console.log(props)
         }
 
         const onClickRight = () => {
-            // console.log(parentData)
+            console.log(data)
         }
 
         return {
-            // ...parentData,
+            ...data,
             onClickLeft,
             onClickRight
         }

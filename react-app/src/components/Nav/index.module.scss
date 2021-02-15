@@ -1,6 +1,22 @@
-.nav-wrap{
-    width: 100%;
-    height: 50px;
-    display: grid;
-    gap: 20px 0;
+.nav-wrap {
+	min-height: 50px;
+	display: grid;
+	line-height: 50px;
+	border-bottom: 1px solid #e7e7e7;
+	padding: 0 30px;
+	box-sizing: border-box;
+	grid-template-columns: repeat(2, auto);
+	justify-content: space-between;
+	.left-grid {
+		display: grid;
+        grid-template-columns: repeat(13,auto);
+        gap: 0 20px;
+		.item {
+			text-align: center;
+            cursor: pointer;
+            &:hover{
+                color: #428BD1;
+            }
+		}
+	}
 }

@@ -60,17 +60,22 @@ export default class Nav extends Component {
 		],
 	};
 	render() {
-		console.log(this.state);
-
 		const { list } = this.state;
+
+		console.log(list);
+
 		return (
-			<div
-				className={nav["nav-wrap"]}
-				style={{ gridTemplateColumns: `repeat(${list.lenght}, auto)` }}
-			>
-				{list.map((item, i) => {
-					return <div key={i}>{item.name}</div>;
-				})}
+			<div className={nav["nav-wrap"]}>
+				<div className={nav["left-grid"]}>
+					{list.map((item, i) => {
+						return (
+							<div className={nav["item"]} key={i}>
+								{item.name}
+							</div>
+						);
+					})}
+				</div>
+				<div className={nav["right-grid"]}>123</div>
 			</div>
 		);
 	}

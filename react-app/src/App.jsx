@@ -1,20 +1,18 @@
-import React, { Component } from "react";
-import './App.css'
+// 重置默认样式
+import "./util/reset.css"
 
-import Header from './components/Header';
-import List from "./components/List";
-import Footer from "./components/Footer";
+import React,{ Component } from "react";
+
+import Layout from "./pages/Layout";
 
 export default class App extends Component {
-    state = {}
-    
+	state = {};
+
 	render() {
-        return <div className="body">
-            <div className="body-title">
-                <Header />
-                <List />
-                <Footer />
-            </div>
-        </div>
+		return (
+			<div className="body">
+				<Layout />
+			</div>
+		);
 	}
 }

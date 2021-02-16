@@ -126,3 +126,31 @@ template {
 /* 有些浏览器会显示template 不过template标签用的也少，自行取舍。 */
 display: none;
 }
+
+@media (min-width: 1150px) {
+    /* 设置滚动条 */
+    html {
+        overflow-y: overlay;
+    }
+
+    /* 设置滚动条的样式 */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    /* 滚动槽 */
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+        border-radius: 10px;
+    }
+
+    /* 滚动条滑块 */
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: rgb(181, 181, 182);
+        -webkit-box-shadow: inset 0 0 6px rgb(181, 181, 182);
+    }
+    ::-webkit-scrollbar-thumb:window-inactive {
+        background: rgb(181, 181, 182);
+    }
+}

@@ -1,22 +1,22 @@
 .nav-wrap {
-	min-height: 50px;
+	width: 100%;
+	height: 50px;
 	display: grid;
-	line-height: 50px;
 	border-bottom: 1px solid #e7e7e7;
+	background-color: #fff;
 	padding: 0 30px;
 	box-sizing: border-box;
 	grid-template-columns: repeat(2, auto);
+	align-items: center;
 	justify-content: space-between;
+	position: fixed;
+	left: 0;
+	top: 0;
 	.left-grid {
 		display: grid;
-        grid-template-columns: repeat(13,auto);
-        gap: 0 20px;
-		.item {
-			text-align: center;
-            cursor: pointer;
-            &:hover{
-                color: #428BD1;
-            }
-		}
+		gap: 0 20px;
+	}
+	&.shadow {
+		box-shadow: 0 0 20px #E0E0E0;
 	}
 }

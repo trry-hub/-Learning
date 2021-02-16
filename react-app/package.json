@@ -16,6 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "new": "plop",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -37,5 +38,8 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "plop": "^2.7.4",
+    "svg-sprite-loader": "^5.2.1"
+  }
 }

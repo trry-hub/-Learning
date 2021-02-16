@@ -1,0 +1,9 @@
+import {{ lowerCase name }}style from './index.module.scss'
+
+import React,{ Component } from 'react'
+
+export default class {{ properCase name }} extends Component {
+    render() {
+        return <div className={ {{ lowerCase name }}style["{{dashCase name}}-wrap"] }>{{ properCase name }}组件</div>
+    }
+}

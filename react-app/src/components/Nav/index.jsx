@@ -3,6 +3,7 @@ import nav from "./index.module.scss";
 import React, { Component } from "react";
 
 export default class Nav extends Component {
+	// 初始化 satae
 	state = {
 		list: [
 			{
@@ -58,24 +59,54 @@ export default class Nav extends Component {
 				pathname: "/about",
 			},
 		],
+		navHeight: 0,
+		scrollTop: 0,
 	};
+	myRef = React.createRef();
+
+	componentDidMount = () => {
+		window.addEventListener("scroll", this.handleScroll);
+		const navHeight = this.myRef.current.offsetHeight;
+		this.setState({
+			navHeight,
+		});
+	};
+	// 滚动条监听函数
+	handleScroll = () => {
+		let scrollTop =
+			window.pageYOffset ||
+			document.documentElement.scrollTop ||
+			document.body.scrollTop;
+
+		this.setState({
+			scrollTop,
+		});
+	};
+
 	render() {
-		const { list } = this.state;
-
-		console.log(list);
-
+		const { list, navHeight, scrollTop } = this.state;
 		return (
-			<div className={nav["nav-wrap"]}>
-				<div className={nav["left-grid"]}>
-					{list.map((item, i) => {
-						return (
-							<div className={nav["item"]} key={i}>
-								{item.name}
-							</div>
-						);
-					})}
+			<div style={{ height: `${navHeight}px` }}>
+				<div
+					className={`${nav["nav-wrap"]} ${scrollTop >= navHeight?nav["shadow"]: ''}`}
+					ref={this.myRef}
+				>
+					<div
+						className={nav["left-grid"]}
+						style={{ gridTemplateColumns: `repeat(${list.length}, auto)` }}
+					>
+						{list.map((item, i) => {
+							return (
+								<div className="btn btn-link" key={i}>
+									{item.name}
+								</div>
+							);
+						})}
+					</div>
+					<div className={nav["right-grid"]}>
+						<div className="btn btn-primary">Primary</div>
+					</div>
 				</div>
-				<div className={nav["right-grid"]}>123</div>
 			</div>
 		);
 	}

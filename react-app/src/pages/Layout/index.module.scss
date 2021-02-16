@@ -1,9 +1,10 @@
 .layout-wrap {
+    width: 100%;
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
     .layout-content{
-        background-color: #ff6700;
+        background-color: transparent;
     }
     .layout-bottom{
         background-color: skyblue;

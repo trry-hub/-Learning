@@ -1,7 +1,7 @@
 import liststyle from "./index.module.scss";
 
 import React, { Component } from "react";
-import Item from "../Item";
+import Item from "./Item";
 
 export default class List extends Component {
 	state = {

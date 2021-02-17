@@ -1,14 +1,16 @@
 import nav from "./index.module.scss";
 
-import React, { Component } from "react";
+import React,{ Component } from "react";
+import {Link} from "react-router-dom"
+import { withRouter } from "react-router";
 
-export default class Nav extends Component {
+class Nav extends Component {
 	// 初始化 satae
 	state = {
 		list: [
 			{
 				name: "trry",
-				pathname: "/",
+				pathname: "/index",
 			},
 			{
 				name: "首页",
@@ -32,7 +34,7 @@ export default class Nav extends Component {
 			},
 			{
 				name: "资源",
-				pathname: "/API",
+				pathname: "/api",
 			},
 			{
 				name: "CSDN",
@@ -88,7 +90,9 @@ export default class Nav extends Component {
 		return (
 			<div style={{ height: `${navHeight}px` }}>
 				<div
-					className={`${nav["nav-wrap"]} ${scrollTop >= navHeight?nav["shadow"]: ''}`}
+					className={`${nav["nav-wrap"]} ${
+						scrollTop >= navHeight ? nav["shadow"] : ""
+					}`}
 					ref={this.myRef}
 				>
 					<div
@@ -97,9 +101,13 @@ export default class Nav extends Component {
 					>
 						{list.map((item, i) => {
 							return (
-								<div className="btn btn-link" key={i}>
+								<Link
+									to={{pathname: item.pathname}}
+									className="btn btn-link"
+									key={i}
+								>
 									{item.name}
-								</div>
+								</Link>
 							);
 						})}
 					</div>
@@ -111,3 +119,5 @@ export default class Nav extends Component {
 		);
 	}
 }
+
+export default withRouter(Nav);

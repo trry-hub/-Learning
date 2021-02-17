@@ -1,8 +1,7 @@
 import mootostyle from './index.module.scss'
 
 import React,{ Component } from 'react'
-
-import jingjuicon from './jingju.svg'
+import Svg from '../Svg'
 
 export default class Mooto extends Component {
     render() {

@@ -4,7 +4,7 @@
 import { INCREMENT,DECREMENT } from "../constant";
 
 // 同步action，就是指action的指为Object类型的一般对象
-export const createIncrementAction = (data) => ({ type: INCREMENT, data });
+export const add = (data) => ({ type: INCREMENT, data });
 export const createDecrementAction = (data) => ({ type: DECREMENT,data });
 
 
@@ -12,7 +12,7 @@ export const createDecrementAction = (data) => ({ type: DECREMENT,data });
 export const createIncrementAsyncAction = (data,time) => {
     return (dispatch) => {
         setTimeout(() => {
-            dispatch(createIncrementAction(data))
+            dispatch(add(data));
         }, time);
     }
  }

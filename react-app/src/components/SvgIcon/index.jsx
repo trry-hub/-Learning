@@ -13,6 +13,7 @@ export default class SvgIcon extends Component {
 	};
 	static defaultProps = {
 		fill: "currentColor",
+		className: "",
 	};
 	render() {
 		const { iconClass, fill, className } = this.props;

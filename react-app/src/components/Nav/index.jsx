@@ -3,60 +3,74 @@ import nav from "./index.module.scss";
 import React,{ Component } from "react";
 import {Link} from "react-router-dom"
 import { withRouter } from "react-router";
+import { nanoid} from "nanoid"
 
 class Nav extends Component {
 	// 初始化 satae
 	state = {
 		list: [
 			{
+				id: nanoid(),
 				name: "trry",
 				pathname: "/index",
 			},
 			{
+				id: nanoid(),
 				name: "首页",
 				pathname: "/index",
 			},
 			{
+				id: nanoid(),
 				name: "归档",
 				pathname: "/archive",
 			},
 			{
+				id: nanoid(),
 				name: "分类",
 				pathname: "/classify",
 			},
 			{
+				id: nanoid(),
 				name: "标签",
 				pathname: "/tag",
 			},
 			{
+				id: nanoid(),
 				name: "读书",
 				pathname: "/read",
 			},
 			{
+				id: nanoid(),
 				name: "资源",
 				pathname: "/api",
 			},
 			{
+				id: nanoid(),
 				name: "CSDN",
 				pathname: "/",
 			},
 			{
+				id: nanoid(),
 				name: "掘金",
 				pathname: "",
 			},
 			{
+				id: nanoid(),
 				name: "历程",
 				pathname: "/course",
 			},
 			{
+				id: nanoid(),
 				name: "足迹",
 				pathname: "/track",
 			},
 			{
+				id: nanoid(),
 				name: "日记",
 				pathname: "/diary",
 			},
 			{
+				id: nanoid(),
 				name: "关于",
 				pathname: "/about",
 			},
@@ -86,7 +100,9 @@ class Nav extends Component {
 	};
 
 	render() {
-		const { list, navHeight, scrollTop } = this.state;
+		const { list,navHeight,scrollTop } = this.state;
+		console.log(list);
+		
 		return (
 			<div style={{ height: `${navHeight}px` }}>
 				<div
@@ -99,12 +115,12 @@ class Nav extends Component {
 						className={nav["left-grid"]}
 						style={{ gridTemplateColumns: `repeat(${list.length}, auto)` }}
 					>
-						{list.map((item, i) => {
+						{list.map((item) => {
 							return (
 								<Link
-									to={{pathname: item.pathname}}
+									to={{ pathname: item.pathname }}
 									className="btn btn-link"
-									key={i}
+									key={item.id}
 								>
 									{item.name}
 								</Link>

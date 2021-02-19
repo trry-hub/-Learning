@@ -1,19 +1,14 @@
 import nav from "./index.module.scss";
 
-import React,{ Component } from "react";
-import {Link} from "react-router-dom"
+import React, { PureComponent } from "react";
+import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
-import { nanoid} from "nanoid"
+import { nanoid } from "nanoid";
 
-class Nav extends Component {
+class Nav extends PureComponent {
 	// 初始化 satae
 	state = {
 		list: [
-			{
-				id: nanoid(),
-				name: "trry",
-				pathname: "/index",
-			},
 			{
 				id: nanoid(),
 				name: "首页",
@@ -100,9 +95,8 @@ class Nav extends Component {
 	};
 
 	render() {
-		const { list,navHeight,scrollTop } = this.state;
-		console.log(list);
-		
+		const { list, navHeight, scrollTop } = this.state;
+
 		return (
 			<div style={{ height: `${navHeight}px` }}>
 				<div
@@ -113,8 +107,13 @@ class Nav extends Component {
 				>
 					<div
 						className={nav["left-grid"]}
-						style={{ gridTemplateColumns: `repeat(${list.length}, auto)` }}
+						style={{ gridTemplateColumns: `repeat(${list.length + 1}, auto)` }}
 					>
+						<img
+							className={`${nav["logo"]} btn-link`}
+							src={require("@/icons/images/logo.gif").default}
+							alt="trry"
+						/>
 						{list.map((item) => {
 							return (
 								<Link

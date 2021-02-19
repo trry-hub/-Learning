@@ -1,12 +1,12 @@
 import card from "./index.module.scss";
 
-import React,{ Component } from "react";
+import React,{ PureComponent } from "react";
 
 import Inof from "./Info";
 import Mooto from "./Mooto";
 import Study from "./Study";
 
-export default class Card extends Component {
+export default class Card extends PureComponent {
 	render() {
 		return (
 			<div className={card["wrap"]}>

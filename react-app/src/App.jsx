@@ -1,9 +1,9 @@
 
 
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Layout from "./pages/Layout";
 
-export default class App extends Component {
+export default class App extends PureComponent {
 	render() {
 		return (
 			<div className="body">

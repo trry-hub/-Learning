@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 
 import { add, createDecrementAction } from "@/redux/actions/count.js";
 
-class Count extends Component {
+class Count extends PureComponent {
 	add = () => {
 		this.props.add(1);
 	};

@@ -1,9 +1,9 @@
 import infostyle from "./index.module.scss";
 
-import React,{ Component } from "react";
+import React,{ PureComponent } from "react";
 import SvgIcon from "@/components/SvgIcon";
 
-export default class Info extends Component {
+export default class Info extends PureComponent {
 	render() {
 		return (
 			<div className={infostyle["info-wrap"]}>

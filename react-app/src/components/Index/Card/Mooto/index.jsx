@@ -1,9 +1,9 @@
 import mootostyle from "./index.module.scss";
 
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import SvgIcon from "@/components/SvgIcon";
 
-export default class Mooto extends Component {
+export default class Mooto extends PureComponent {
     render() {
         const mootoIcon = "mooto"
 		return (

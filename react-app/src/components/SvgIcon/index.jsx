@@ -1,9 +1,9 @@
 import svgstyle from "./index.module.scss";
 
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
-export default class SvgIcon extends Component {
+export default class SvgIcon extends PureComponent {
 	static propTypes = {
 		// svg名字
 		iconClass: PropTypes.string.isRequired,

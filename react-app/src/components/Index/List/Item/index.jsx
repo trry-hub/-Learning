@@ -1,8 +1,8 @@
 import item from "./index.module.scss";
 
-import React,{ Component } from "react";
+import React,{ PureComponent } from "react";
 
-export default class Item extends Component {
+export default class Item extends PureComponent {
     render() {
         const { title, synopsis } = this.props;
 		return (

@@ -1,9 +1,9 @@
 import nav from "./index.module.scss";
 
-import React,{ Component } from "react";
-import {Link} from "react-router-dom"
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
-import { nanoid} from "nanoid"
+import { nanoid } from "nanoid";
 
 class Nav extends Component {
 	// 初始化 satae
@@ -95,9 +95,8 @@ class Nav extends Component {
 	};
 
 	render() {
-		const { list,navHeight,scrollTop } = this.state;
-		console.log(list);
-		
+		const { list, navHeight, scrollTop } = this.state;
+
 		return (
 			<div style={{ height: `${navHeight}px` }}>
 				<div
@@ -108,7 +107,7 @@ class Nav extends Component {
 				>
 					<div
 						className={nav["left-grid"]}
-						style={{ gridTemplateColumns: `repeat(${list.length+1}, auto)` }}
+						style={{ gridTemplateColumns: `repeat(${list.length + 1}, auto)` }}
 					>
 						<img
 							className={`${nav["logo"]} btn-link`}

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { add, createDecrementAction } from "@/redux/actions/count";
+import { add, createDecrementAction } from "@/redux/actions/count.js";
 
-class Count extends Component {
+class Counts extends Component {
 	add = () => {
 		this.props.add(1);
 	};
@@ -27,4 +27,4 @@ const mapDispatchToProps = {
 	createDecrementAction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Count);
+export default connect(mapStateToProps, mapDispatchToProps)(Counts);

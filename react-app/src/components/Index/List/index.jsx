@@ -1,9 +1,9 @@
 import liststyle from "./index.module.scss";
 
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Item from "./Item";
 
-export default class List extends Component {
+export default class List extends PureComponent {
 	state = {
 		list: [
 			{

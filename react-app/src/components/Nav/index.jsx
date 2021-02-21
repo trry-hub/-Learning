@@ -11,11 +11,6 @@ class Nav extends Component {
 		list: [
 			{
 				id: nanoid(),
-				name: "trry",
-				pathname: "/index",
-			},
-			{
-				id: nanoid(),
 				name: "首页",
 				pathname: "/index",
 			},
@@ -113,8 +108,13 @@ class Nav extends Component {
 				>
 					<div
 						className={nav["left-grid"]}
-						style={{ gridTemplateColumns: `repeat(${list.length}, auto)` }}
+						style={{ gridTemplateColumns: `repeat(${list.length+1}, auto)` }}
 					>
+						<img
+							className={`${nav["logo"]} btn-link`}
+							src={require("@/icons/images/logo.gif").default}
+							alt="trry"
+						/>
 						{list.map((item) => {
 							return (
 								<Link

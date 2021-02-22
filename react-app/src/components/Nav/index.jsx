@@ -111,7 +111,7 @@ class Nav extends Component {
 					>
 						<img
 							className={`${nav["logo"]} btn-link`}
-							src={require("@/icons/images/logo.gif").default}
+							src={require("@/assets/images/logo.gif").default}
 							alt="trry"
 						/>
 						{list.map((item) => {

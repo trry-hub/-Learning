@@ -2,7 +2,7 @@
 import "./util/reset.css";
 
 // 处理svg图标
-import "@/icons/index";
+import "@/assets/svg";
 
 // 引入React
 import React from "react";

@@ -1,4 +1,4 @@
-'use strict';
+
 
 const fs = require('fs');
 const path = require('path');
@@ -535,7 +535,7 @@ module.exports = function (webpackEnv) {
 						},
 						{
 							test: /\.(eot|woff2?|ttf|svg)$/,
-							exclude: path.resolve(__dirname, "../src/icons"), //不处理指定svg的文件(所有使用的svg文件放到该文件夹下)
+							exclude: path.resolve(__dirname, "../src/assets"), //不处理指定svg的文件(所有使用的svg文件放到该文件夹下)
 							use: [
 								{
 									loader: "url-loader",
@@ -551,7 +551,7 @@ module.exports = function (webpackEnv) {
 						{
 							test: /\.svg$/,
 							loader: "svg-sprite-loader",
-							include: path.resolve(__dirname, "../src/icons"), //只处理指定svg的文件(所有使用的svg文件放到该文件夹下)
+							include: path.resolve(__dirname, "../src/assets"), //只处理指定svg的文件(所有使用的svg文件放到该文件夹下)
 							options: {
 								symbolId: "icon-[name]", //symbolId和use使用的名称对应      <use xlinkHref={"#icon-" + iconClass} />
 							},

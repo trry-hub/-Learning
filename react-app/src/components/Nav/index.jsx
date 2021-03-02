@@ -1,7 +1,7 @@
 import nav from "./index.module.scss";
 
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router";
 import { nanoid } from "nanoid";
 
@@ -42,7 +42,8 @@ class Nav extends Component {
 			{
 				id: nanoid(),
 				name: "CSDN",
-				pathname: "/",
+				pathname:
+					"https://blog.csdn.net/weixin_40637683?spm=1010.2135.3001.5343&type=blog",
 			},
 			{
 				id: nanoid(),
@@ -110,19 +111,19 @@ class Nav extends Component {
 						style={{ gridTemplateColumns: `repeat(${list.length + 1}, auto)` }}
 					>
 						<img
-							className={`${nav["logo"]} btn-link`}
+							className={`${nav["logo"]} btn-NavLink`}
 							src={require("@/assets/images/logo.gif").default}
 							alt="trry"
 						/>
 						{list.map((item) => {
 							return (
-								<Link
+								<NavLink
 									to={{ pathname: item.pathname }}
-									className="btn btn-link"
+									className="btn btn-NavLink"
 									key={item.id}
 								>
 									{item.name}
-								</Link>
+								</NavLink>
 							);
 						})}
 					</div>

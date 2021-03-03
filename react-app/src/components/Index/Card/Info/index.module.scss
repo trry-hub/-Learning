@@ -6,20 +6,67 @@
 	border-radius: 3px;
 	.title {
 		color: #428bca;
-		font-size: 18px;
+		font-size: 22px;
+		font-weight: 500;
 	}
 	.content {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		grid-template-columns: repeat(2, 1fr);
 		margin-top: 10px;
-        .left{
-            .left-item{
-                font-size: 16px;
-                vertical-align: middle;
-                .qq-icon{
-                    font-size: 16px;
-                }
-            }
-        }
+		.left {
+			.left-item {
+				font-size: 14px;
+				display: grid;
+				grid-template-columns: auto auto;
+				justify-content: start;
+				gap: 0 5px;
+				.qq-icon,
+				.wechat {
+					font-size: 18px;
+					color: #68a5e1;
+					margin-top: 1px;
+				}
+				.grid-item {
+					margin-bottom: 10px;
+					cursor: pointer;
+				}
+				.grid-item-act {
+					color: #68a5e1;
+				}
+			}
+		}
+		.right {
+			.wrap-icon {
+				padding: 5px;
+				background-image: linear-gradient(
+					141deg,
+					#1fc8db 20%,
+					#ff6700 50%,
+					#2cb5e8 75%
+				);
+				background-color: #1fc8db;
+				display: inline-block;
+				transition: all 0.3s;
+				border-radius: 3px;
+				&:hover {
+					transform: scale(1.2);
+				}
+				.right-img {
+					width: 100px;
+					height: 100px;
+				}
+			}
+		}
+	}
+	.message-wrap {
+		display: grid;
+		grid-template-columns: repeat(2, auto);
+		justify-content: start;
+		gap: 0 5px;
+		.message {
+			font-size: 18px;
+			color: #68a5e1;
+			margin-top: 1px;
+		}
 	}
 }

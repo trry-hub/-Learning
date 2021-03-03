@@ -3,100 +3,24 @@ import nav from "./index.module.scss";
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router";
-import { nanoid } from "nanoid";
 
 class Nav extends Component {
 	// 初始化 satae
 	state = {
-		list: [
-			{
-				id: nanoid(),
-				name: "首页",
-				pathname: "/index",
-			},
-			{
-				id: nanoid(),
-				name: "归档",
-				pathname: "/archive",
-			},
-			{
-				id: nanoid(),
-				name: "分类",
-				pathname: "/classify",
-			},
-			{
-				id: nanoid(),
-				name: "标签",
-				pathname: "/tag",
-			},
-			{
-				id: nanoid(),
-				name: "读书",
-				pathname: "/read",
-			},
-			{
-				id: nanoid(),
-				name: "资源",
-				pathname: "/api",
-			},
-			{
-				id: nanoid(),
-				name: "CSDN",
-				pathname:
-					"https://blog.csdn.net/weixin_40637683?spm=1010.2135.3001.5343&type=blog",
-			},
-			{
-				id: nanoid(),
-				name: "掘金",
-				pathname: "",
-			},
-			{
-				id: nanoid(),
-				name: "历程",
-				pathname: "/course",
-			},
-			{
-				id: nanoid(),
-				name: "足迹",
-				pathname: "/track",
-			},
-			{
-				id: nanoid(),
-				name: "日记",
-				pathname: "/diary",
-			},
-			{
-				id: nanoid(),
-				name: "关于",
-				pathname: "/about",
-			},
-		],
 		navHeight: 0,
-		scrollTop: 0,
 	};
 	myRef = React.createRef();
 
 	componentDidMount = () => {
-		window.addEventListener("scroll", this.handleScroll);
 		const navHeight = this.myRef.current.offsetHeight;
 		this.setState({
 			navHeight,
 		});
 	};
-	// 滚动条监听函数
-	handleScroll = () => {
-		let scrollTop =
-			window.pageYOffset ||
-			document.documentElement.scrollTop ||
-			document.body.scrollTop;
-
-		this.setState({
-			scrollTop,
-		});
-	};
 
 	render() {
-		const { list, navHeight, scrollTop } = this.state;
+		const { navHeight } = this.state;
+		const { scrollTop, list } = this.props;
 
 		return (
 			<div style={{ height: `${navHeight}px` }}>
@@ -116,14 +40,24 @@ class Nav extends Component {
 							alt="trry"
 						/>
 						{list.map((item) => {
-							return (
+							return item.pathname.indexOf("http") === -1 ? (
 								<NavLink
 									to={{ pathname: item.pathname }}
-									className="btn btn-NavLink"
+									className={`btn btn-NavLink ${nav["btn"]}`}
 									key={item.id}
 								>
 									{item.name}
 								</NavLink>
+							) : (
+								<a
+									className={`btn btn-NavLink ${nav["btn"]}`}
+									target="_blank"
+									href={item.pathname}
+									rel="noreferrer noreferrer"
+									key={item.id}
+								>
+									{item.name}
+								</a>
 							);
 						})}
 					</div>

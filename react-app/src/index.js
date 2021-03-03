@@ -13,8 +13,11 @@ import { BrowserRouter } from "react-router-dom";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 
+// 引入全局方法
+import "@/util";
+
 // 引入App组件
-import App from "./App";
+import { App } from "./App";
 
 ReactDOM.render(
 	// 此处需要用Provider包裹App，目的是让App所有的后代容器组件都能接收到store

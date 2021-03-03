@@ -4,3 +4,6 @@
 
 export const INCREMENT = "increment";
 export const DECREMENT = "decrement";
+
+// layout
+export const SETSCROLL = "setScroll";

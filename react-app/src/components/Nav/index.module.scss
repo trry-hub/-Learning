@@ -15,12 +15,16 @@
 	.left-grid {
 		display: grid;
 		gap: 0 20px;
+		.btn {
+			&:hover {
+				color: #428bca !important;
+			}
+		}
 	}
 	&.shadow {
-		box-shadow: 0 0 20px #E0E0E0;
+		box-shadow: 0 0 20px #e0e0e0;
 	}
-
-	.logo{
+	.logo {
 		width: 50px;
 	}
 }

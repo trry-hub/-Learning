@@ -23,7 +23,6 @@
 		"redux-devtools-extension": "^2.13.8",
 		"redux-thunk": "^2.3.0",
 		"sass-loader": "^11.0.1",
-		"svg-sprite-loader": "^5.2.1",
 		"web-vitals": "^1.0.1"
 	},
 	"scripts": {
@@ -52,6 +51,7 @@
 		]
 	},
 	"devDependencies": {
+		"svg-sprite-loader": "^5.2.1",
 		"svgo": "^2.2.0",
 		"svgo-loader": "^2.2.2"
 	}

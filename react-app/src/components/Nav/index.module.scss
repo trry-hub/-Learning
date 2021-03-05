@@ -3,7 +3,7 @@
 	height: 50px;
 	display: grid;
 	border-bottom: 1px solid #e7e7e7;
-	background-color: #fff;
+	background: transparent;
 	padding: 0 30px;
 	box-sizing: border-box;
 	grid-template-columns: repeat(2, auto);
@@ -12,13 +12,22 @@
 	position: fixed;
 	left: 0;
 	top: 0;
+	z-index: 10;
+	backdrop-filter: blur(10px);
 	.left-grid {
 		display: grid;
 		gap: 0 20px;
+		align-items: center;
 		.btn {
+			padding: 10px;
 			&:hover {
 				color: #428bca !important;
 			}
+		}
+		:global(.active) {
+			color: #428bca;
+			box-shadow: none;
+			text-decoration: underline;
 		}
 	}
 	&.shadow {

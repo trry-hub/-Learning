@@ -20,6 +20,9 @@ import { setScroll } from "@/redux/actions/layout";
 // 引入全局方法
 import { getFileName } from "@/util";
 
+const ListLayout = lazy(() => import("@/pages/ListLayout"));
+import Loading from "@/components/Loading";
+
 // layout UI组件
 class Layout extends Component {
 	state = {
@@ -34,26 +37,31 @@ class Layout extends Component {
 				id: nanoid(),
 				name: "归档",
 				pathname: "/archive",
+				type: "ListLayout",
 			},
 			{
 				id: nanoid(),
 				name: "分类",
 				pathname: "/classify",
+				type: "ListLayout",
 			},
 			{
 				id: nanoid(),
 				name: "标签",
 				pathname: "/tag",
+				type: "ListLayout",
 			},
 			{
 				id: nanoid(),
 				name: "读书",
 				pathname: "/readbook",
+				type: "ListLayout",
 			},
 			{
 				id: nanoid(),
 				name: "资源",
 				pathname: "/resource",
+				type: "ListLayout",
 			},
 			{
 				id: nanoid(),
@@ -70,24 +78,29 @@ class Layout extends Component {
 				id: nanoid(),
 				name: "历程",
 				pathname: "/course",
+				type: "ListLayout",
 			},
 			{
 				id: nanoid(),
 				name: "足迹",
 				pathname: "/track",
+				type: "ListLayout",
 			},
 			{
 				id: nanoid(),
 				name: "日记",
 				pathname: "/diary",
+				type: "ListLayout",
 			},
 			{
 				id: nanoid(),
 				name: "关于",
 				pathname: "/about",
+				type: "ListLayout",
 			},
 		],
 		componentsNavList: [],
+		documentHeight: 0,
 	};
 	componentDidMount() {
 		window.addEventListener("scroll", this.handleScroll);
@@ -121,7 +134,6 @@ class Layout extends Component {
 
 	// 滚动条回到顶部
 	goTop = () => {
-		// 函数体
 		const body = document.body;
 		const bodyStyle = body.style;
 		let scrollTop = document.documentElement.scrollTop || body.scrollTop;
@@ -136,7 +148,8 @@ class Layout extends Component {
 
 	render() {
 		const { scrollTop } = this.props.layout;
-		const { show, list, componentsNavList } = this.state;
+		const { show, list, componentsNavList, documentHeight } = this.state;
+
 		return (
 			<Fragment>
 				<div className={layout["layout-wrap"]}>
@@ -144,15 +157,26 @@ class Layout extends Component {
 						<Nav list={list} scrollTop={scrollTop} />
 					</div>
 					<div className={layout["layout-content"]}>
-						<Suspense fallback={<div>loading...</div>}>
+						<Suspense fallback={<Loading />}>
 							<Switch>
-								<Redirect exact from="/" to="/index" />
+								<Redirect exact from="/blog" to="/blog/index" />
 								<Route path="/count" component={Counts} />
+
 								{componentsNavList.map((item) => {
-									return (
+									return item.type === "ListLayout" ? (
+										<ListLayout
+											key={item.id}
+											render={() => (
+												<Route
+													path={"/blog" + item.pathname}
+													component={item.components}
+												/>
+											)}
+										/>
+									) : (
 										<Route
 											key={item.id}
-											path={item.pathname}
+											path={"/blog" + item.pathname}
 											component={item.components}
 										/>
 									);
@@ -161,16 +185,15 @@ class Layout extends Component {
 						</Suspense>
 					</div>
 					<div className={layout["layout-bottom"]}>
-						<Footer scrollTop={scrollTop} />
+						<Footer documentHeight={documentHeight} scrollTop={scrollTop} />
 					</div>
 				</div>
-				{show ? (
-					<div className={layout["go-top"]} onClick={this.goTop}>
-						<SvgIcon className={layout["go-top-icon"]} iconClass="goTop" />
-					</div>
-				) : (
-					""
-				)}
+				<div
+					className={`${show ? layout["show-icon"] : layout["go-top"]}`}
+					onClick={this.goTop}
+				>
+					<SvgIcon className={layout["go-top-icon"]} iconClass="goTop" />
+				</div>
 			</Fragment>
 		);
 	}

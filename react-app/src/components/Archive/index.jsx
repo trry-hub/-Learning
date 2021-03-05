@@ -1,21 +1,15 @@
-import archivestyle from "./index.module.scss";
+import css from "./index.module.scss";
 
 import React, { Component, lazy } from "react";
 
-const ListLayout = lazy(() => import("@/pages/ListLayout"));
+// import Loading from "@/components/Loading";
 
 export default class Archive extends Component {
 	render() {
 		return (
-			<ListLayout
-				render={() => {
-					return (
-						<div className={archivestyle["archive-wrap"]}>
-							<div className={archivestyle["list"]}>13</div>
-						</div>
-					);
-				}}
-			/>
+			<div className={css["archive"]}>
+				<div className={css["list"]}>{/* <Loading /> */}123</div>
+			</div>
 		);
 	}
 }

@@ -35,22 +35,23 @@ class Nav extends Component {
 						style={{ gridTemplateColumns: `repeat(${list.length + 1}, auto)` }}
 					>
 						<img
-							className={`${nav["logo"]} btn-NavLink`}
+							className={`${nav["logo"]}`}
 							src={require("@/assets/images/logo.gif").default}
 							alt="trry"
+							onClick={() => this.props.history.push("/")}
 						/>
 						{list.map((item) => {
 							return item.pathname.indexOf("http") === -1 ? (
 								<NavLink
-									to={{ pathname: item.pathname }}
-									className={`btn btn-NavLink ${nav["btn"]}`}
+									to={{ pathname: "/blog" + item.pathname }}
+									className={`${nav["btn"]}`}
 									key={item.id}
 								>
 									{item.name}
 								</NavLink>
 							) : (
 								<a
-									className={`btn btn-NavLink ${nav["btn"]}`}
+									className={`${nav["btn"]}`}
 									target="_blank"
 									href={item.pathname}
 									rel="noreferrer noreferrer"

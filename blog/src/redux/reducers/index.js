@@ -3,7 +3,7 @@
 */
 import { combineReducers } from "redux";
 
-import { getFileName } from "@/util";
+import { getFileName } from "@/utils";
 
 const reducer = require.context("./", false, /(?<!index).js$/);
 

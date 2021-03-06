@@ -15,6 +15,7 @@ $num: 10;
 }
 .body {
 	height: 100vh;
+	min-width: 700px;
 	overflow-y: scroll;
 	background: linear-gradient(315deg, #fff, #d7e1ec);
 	display: flex;
@@ -52,6 +53,12 @@ $num: 10;
 				}
 				& + .tooltip {
 					transform: scale(0);
+					-webkit-touch-callout: none;
+					-webkit-user-select: none;
+					-khtml-user-select: none;
+					-moz-user-select: none;
+					-ms-user-select: none;
+					user-select: none;
 					transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 				}
 				&:hover {
@@ -165,6 +172,7 @@ $num: 10;
 }
 .footer {
 	height: 100px;
+	min-width: 700px;
 	background-image: -webkit-linear-gradient(
 		top,
 		rgba(0, 0, 0, 0),
@@ -179,6 +187,12 @@ $num: 10;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 	.xin {
 		font-size: 25px;
 		margin-right: 5px;

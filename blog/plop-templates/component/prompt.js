@@ -5,10 +5,10 @@ function getFolder(path) {
     const files = fs.readdirSync(path)
     files.forEach(function(item) {
         let stat = fs.lstatSync(path + '/' + item)
-        if (stat.isDirectory() === true && item !== 'util') {
-            components.push(path + '/' + item)
-            // components.push.apply(components, getFolder(path + '/' + item))
-        }
+        if (stat.isDirectory() === true && item !== "utils") {
+					components.push(path + "/" + item);
+					// components.push.apply(components, getFolder(path + '/' + item))
+				}
     })
     return components
 }
@@ -37,8 +37,6 @@ module.exports = {
 		},
 	],
     actions: (data) => {
-        console.log(data);
-        
 		const actions = [
 			{
 				type: "add",

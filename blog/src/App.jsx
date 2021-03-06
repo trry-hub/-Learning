@@ -5,7 +5,8 @@ import { withRouter, Link } from "react-router-dom";
 
 import SvgIcon from "@/components/SvgIcon";
 
-import { MyContext } from "@/util/context-manager";
+import { MyContext } from "@/utils/context-manager";
+
 
 class App extends Component {
 	state = {

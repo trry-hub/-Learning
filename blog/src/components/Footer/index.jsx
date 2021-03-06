@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import css from "./index.module.scss";
 
-import { MyContext } from "@/util/context-manager";
+import { MyContext } from "@/utils/context-manager";
 export default class Footer extends PureComponent {
 	// 声明接收
 	static contextType = MyContext;

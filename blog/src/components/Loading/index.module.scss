@@ -4,7 +4,8 @@
 	right: 0;
 	top: 0;
 	bottom: 0;
-	background-color: rgba(0, 0, 0, 0.4);
+	background: transparent;
+	backdrop-filter: blur(10px);
 	z-index: 100;
 	transition: all 0.2s;
 	opacity: 1;
@@ -33,7 +34,7 @@
 				height: 20px;
 				border-radius: 50%;
 				box-shadow: 0 0 30px #03a9f4;
-				background: linear-gradient(#fce4ec, #03618d);
+				background: linear-gradient(#ffF, #03618d);
 			}
 		}
 	}

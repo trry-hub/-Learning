@@ -7,6 +7,7 @@ import Inof from "@/pages/Index/components/Info";
 import Mooto from "@/pages/Index/components/Mooto";
 import Study from "@/pages/Index/components/Study";
 
+
 export default class Index extends Component {
 	state = {
 		list: [
@@ -36,13 +37,15 @@ export default class Index extends Component {
 			},
 		],
 	};
+
+	componentDidMount() {}
 	render() {
 		const { list } = this.state;
 		return (
 			<div className={css["wrap"]}>
 				<div className={css["list-wrap"]}>
 					{list.map((item,index) => {
-						return <Item key={index} {...item} />;
+						return <Item key={index} {...item} />
 					})}
 				</div>
 				<div className={css["card-wrap"]}>

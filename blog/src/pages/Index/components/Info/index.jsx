@@ -33,7 +33,7 @@ export default class Info extends Component {
 									onMouseEnter={this.mouseEvent}
 									data-imgname="2103438487"
 								>
-									- 2103438487
+									2103438487
 								</div>
 								<div
 									className={`${infostyle["grid-item"]} ${
@@ -42,7 +42,7 @@ export default class Info extends Component {
 									onMouseEnter={this.mouseEvent}
 									data-imgname="1510133782"
 								>
-									- 1510133782
+									1510133782
 								</div>
 								<div
 									className={`${infostyle["grid-item"]} ${
@@ -51,7 +51,7 @@ export default class Info extends Component {
 									onMouseEnter={this.mouseEvent}
 									data-imgname="848014514"
 								>
-									- 848014514
+									848014514
 								</div>
 							</div>
 						</div>

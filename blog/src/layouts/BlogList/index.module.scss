@@ -18,21 +18,8 @@
 			ul {
 				margin-top: 10px;
 				li {
-					margin-left: 20px;
 					line-height: 25px;
 					position: relative;
-					&::before {
-						content: "";
-						width: 5px;
-						height: 5px;
-						border-radius: 50%;
-						overflow: hidden;
-						background-color: #333;
-						position: absolute;
-						left: -10px;
-						top: 50%;
-						transform: translateY(-50%);
-					}
 				}
 			}
 		}

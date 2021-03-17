@@ -1,5 +1,6 @@
 // 重置默认样式
-import "./utils/reset.css";
+// import "./utils/reset.css";
+import "normalize.css";
 
 // 处理svg图标
 import "@/assets/svg";
@@ -32,7 +33,6 @@ ReactDOM.render(
 				<Route path="/blog" component={Blog}></Route>
 				<Route component={Error}></Route>
 			</Switch>
-			{/* <App /> */}
 		</BrowserRouter>
 	</Provider>,
 	document.getElementById("root")

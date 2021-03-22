@@ -50,7 +50,6 @@ export default class TodoList extends Component {
 			];
 			this.setState({
 				list: newList,
-				inputVal: "",
 			});
 		} else {
 			alert("请输入要新增的内容!");
@@ -89,7 +88,7 @@ export default class TodoList extends Component {
     }
 
 	render() {
-		const { list, inputVal } = this.state;
+		const { list } = this.state;
 		return (
 			<div style={{ width: "600px", margin: "0 auto" }}>
 				<h2 style={{ textAlign: "center" }}>TodoList</h2>

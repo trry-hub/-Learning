@@ -10,20 +10,16 @@
 <body>
     <script>
         let p = new Promise((resolve,reject) => {
-            setTimeout(() => {
-                resolve('ok')
-            }, 1000);
-            // throw 'error'
-            // resolve('ok')
-            // reject('Error')
+            resolve(12)
         })
-        console.log(p);
-        
-        p.then((value) => {
-            console.log(value);
-        },(reason) => {
-            console.warn(reason)
+        let p2 = Promise.resolve(456)
+        let p3 = Promise.resolve(789)
+
+        const res = Promise.all([p,p2,p3])
+        p.then(res => {
+            console.log(res);
         })
+        console.log( res)
 
     </script>
 </body>

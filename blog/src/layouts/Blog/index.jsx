@@ -2,139 +2,81 @@
 import css from "./index.module.scss";
 
 // 引入三方库
-import React, { Component, Suspense, lazy, Fragment } from "react";
-import { Route, Switch } from "react-router-dom";
+import React, {
+	useState,
+	useEffect,
+	useCallback,
+	useMemo,
+	Suspense,
+	lazy,
+	Fragment,
+} from "react";
+import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 // import NProgress from "nprogress";
 // import "nprogress/nprogress.css"; // progress bar style
-import { nanoid } from "nanoid";
 
+// 引入全局方法
+import { getFileName } from "@/utils";
+import Loading from "@/components/Loading";
 // 引入组件
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Counts from "@/containers/Counts";
 import SvgIcon from "@/components/SvgIcon";
+import Index from "@/pages/Index";
 
 // 引入actions
 import { setScroll } from "@/redux/actions/blog-layout";
 
-// 引入全局方法
-import { getFileName } from "@/utils";
-import Loading from "@/components/Loading";
+import routes from "@/routes";
 
 const BlogList = lazy(() => import("@/layouts/BlogList"));
 
 // Blog UI组件
-class Blog extends Component {
-	state = {
-		show: false,
-		list: [
-			{
-				id: nanoid(),
-				name: "首页",
-				pathname: "/index",
-			},
-			{
-				id: nanoid(),
-				name: "归档",
-				pathname: "/archive",
-				type: "ListLayout",
-			},
-			{
-				id: nanoid(),
-				name: "分类",
-				pathname: "/classify",
-				type: "ListLayout",
-			},
-			{
-				id: nanoid(),
-				name: "标签",
-				pathname: "/tag",
-				type: "ListLayout",
-			},
-			{
-				id: nanoid(),
-				name: "读书",
-				pathname: "/readbook",
-				type: "ListLayout",
-			},
-			{
-				id: nanoid(),
-				name: "资源",
-				pathname: "/resource",
-				type: "ListLayout",
-			},
-			{
-				id: nanoid(),
-				name: "CSDN",
-				pathname:
-					"https://blog.csdn.net/weixin_40637683?spm=1010.2135.3001.5343&type=blog",
-			},
-			{
-				id: nanoid(),
-				name: "掘金",
-				pathname: "https://juejin.cn/user/2620826707309208",
-			},
-			{
-				id: nanoid(),
-				name: "历程",
-				pathname: "/course",
-				type: "ListLayout",
-			},
-			{
-				id: nanoid(),
-				name: "足迹",
-				pathname: "/track",
-				type: "ListLayout",
-			},
-			{
-				id: nanoid(),
-				name: "日记",
-				pathname: "/diary",
-				type: "ListLayout",
-			},
-			{
-				id: nanoid(),
-				name: "关于",
-				pathname: "/about",
-				type: "ListLayout",
-			},
-		],
-		componentsNavList: [],
-		documentHeight: 0,
-	};
-	componentDidMount() {
-		window.addEventListener("scroll", this.handleScroll);
+const Blog = (props) => {
+	const [show, setShow] = useState(false);
+	const [list] = useState(routes);
+	const [documentHeight] = useState(0);
+	const [componentsChild, setComponentsChild] = useState([]);
 
-		//组件懒加载
-		let componentsNavList = this.state.list.filter((item) => {
+	useEffect(() => {
+		console.log("生命周期执行了");
+
+		// 滚动条监听函数
+		window.addEventListener("scroll", scroll);
+		// 组件懒加载
+		let arr = list.filter((item) => {
 			if (item.pathname.indexOf("http") === -1) {
 				const componentsName = getFileName(item.pathname).firstUpperCase();
-				item.components = lazy(() => import(`@/pages/${componentsName}`));
+				item.component = lazy(() => import(`@/pages/${componentsName}`));
 				return item;
 			}
 			return null;
 		});
-		this.setState({ componentsNavList });
-	}
+		let child = arr?.find((item) => {
+			return props.location.pathname === "/blog" + item.pathname;
+		});
+		setComponentsChild(child);
+		return () => {
+			window.removeEventListener("scroll", () => {}, false);
+		};
+	}, [list]);
 
-	// 滚动条监听函数
-	handleScroll = () => {
+	const scroll = useCallback(() => {
 		let scrollTop =
 			window.pageYOffset ||
 			document.documentElement.scrollTop ||
 			document.body.scrollTop;
-
 		if (scrollTop > 100) {
-			this.setState({ show: true });
+			setShow(true);
 		} else {
-			this.setState({ show: false });
+			setShow(false);
 		}
-		this.props.setScroll(scrollTop);
-	};
-
+		props.setScroll(scrollTop);
+	}, [props]);
 	// 滚动条回到顶部
-	goTop = () => {
+	const goTop = () => {
 		const body = document.body;
 		const bodyStyle = body.style;
 		let scrollTop = document.documentElement.scrollTop || body.scrollTop;
@@ -147,50 +89,44 @@ class Blog extends Component {
 		}, 500);
 	};
 
-	render() {
-		const { scrollTop } = this.props.layout;
-		const { show, list, componentsNavList, documentHeight } = this.state;
+	const getChildComponent = useMemo(() => {
 		return (
-			<Fragment>
-				<div className={css["layout-wrap"]}>
-					<div>
-						<Nav list={list} scrollTop={scrollTop} />
-					</div>
-					<div className={css["layout-content"]}>
-						<Suspense fallback={<Loading />}>
-							<Switch>
-								<Route path="/count" component={Counts} />
-								{componentsNavList.map((item) => {
-									const route = (
-										<Route
-											key={item.id}
-											path={"/blog" + item.pathname}
-											component={item.components}
-										/>
-									);
-									return item.type === "ListLayout" ? (
-										<BlogList key={item.id} render={() => route} />
-									) : (
-										route
-									);
-								})}
-							</Switch>
-						</Suspense>
-					</div>
-					<div className={css["layout-bottom"]}>
-						<Footer documentHeight={documentHeight} scrollTop={scrollTop} />
-					</div>
-				</div>
-				<div
-					className={`${show ? css["show-icon"] : css["go-top"]}`}
-					onClick={this.goTop}
-				>
-					<SvgIcon className={css["go-top-icon"]} iconClass="goTop" />
-				</div>
-			</Fragment>
+			<Route
+				path={componentsChild.pathname}
+				component={componentsChild.component}
+			/>
 		);
-	}
-}
+	}, [componentsChild]);
+
+	const { scrollTop } = props.layout;
+	return (
+		<Fragment>
+			<div className={css["layout-wrap"]}>
+				<div>
+					<Nav list={list} scrollTop={scrollTop} />
+				</div>
+				<div className={css["layout-content"]}>
+					<Suspense fallback={<Loading />}>
+						<Switch>
+							<Route path="/count" component={Counts} />
+							<Route path="/blog/index" component={Index} />
+							<BlogList render={() => getChildComponent} />
+						</Switch>
+					</Suspense>
+				</div>
+				<div className={css["layout-bottom"]}>
+					<Footer documentHeight={documentHeight} scrollTop={scrollTop} />
+				</div>
+			</div>
+			<div
+				className={`${show ? css["show-icon"] : css["go-top"]}`}
+				onClick={goTop}
+			>
+				<SvgIcon className={css["go-top-icon"]} iconClass="goTop" />
+			</div>
+		</Fragment>
+	);
+};
 
 // redux中状态映射到props中
 const mapStateToProps = (state) => {
@@ -202,4 +138,4 @@ const mapDispatchToProps = {
 	setScroll,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Blog);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Blog));

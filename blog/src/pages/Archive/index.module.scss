@@ -1,8 +1,4 @@
 .archive {
-	// archive
-	// display: grid;
-	// grid-template-columns: 270px 1fr;
-	// gap: 0 30px;
 	padding: 10px 15px;
 	border: 1px solid #e3e3e3;
 	border-radius: 4px;
@@ -12,11 +8,11 @@
 		.item{
 			.year{
 				color: red;
-				font-size: 22px;
+				font-size: 24px;
 				margin-bottom: 5px;
 			}
 			.date{
-				font-size: 18px;
+				font-size: 16px;
 				color: red;
 			}
 			.content{

@@ -6,7 +6,6 @@ import { withRouter, Link } from "react-router-dom";
 import SvgIcon from "@/components/SvgIcon";
 import { MyContext } from "@/utils/context-manager";
 
-
 class App extends Component {
 	state = {
 		documentHeight: 0,
@@ -34,6 +33,7 @@ class App extends Component {
 		return (
 			<React.Fragment>
 				<div className={style["bg"]}></div>
+
 				<div className={style["body"]}>
 					<MyContext.Provider value={{ documentHeight }}>
 						<div className={style["content"]}>

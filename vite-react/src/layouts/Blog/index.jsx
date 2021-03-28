@@ -16,7 +16,6 @@ import SvgIcon from "@/components/SvgIcon";
 import Index from "@/pages/Index";
 // 引入actions
 import { setScroll } from "@/redux/actions/blog-layout";
-import Scrollbar from "@/components/Scrollbar";
 
 // 引入全局方法
 import { getFileName, useScrollHeight } from "@/utils/index";
@@ -36,7 +35,7 @@ const Blog = (props) => {
 			.filter((item) => {
 				if (item.pathname.indexOf("http") === -1) {
 					const componentsName = getFileName(item.pathname).firstUpperCase();
-					item.component = lazy(() => import(`@/pages/${componentsName}`));
+					// item.component = lazy(() => import(`../../pages/${componentsName}`));
 					return item;
 				}
 				return null;
@@ -70,18 +69,16 @@ const Blog = (props) => {
 				<div className={css["layout-content"]}>
 					<Suspense fallback={<Loading />}>
 						<Switch>
-							<Scrollbar>
-								<Route path="/count" component={Counts} />
-								<Route path="/blog/index" component={Index} />
-								<BlogList
-									render={() => (
-										<Route
-											path={componentsChild.pathname}
-											component={componentsChild.component}
-										/>
-									)}
-								/>
-							</Scrollbar>
+							<Route path="/count" component={Counts} />
+							<Route path="/blog/index" component={Index} />
+							<BlogList
+								render={() => (
+									<Route
+										path={componentsChild.pathname}
+										component={componentsChild.component}
+									/>
+								)}
+							/>
 						</Switch>
 					</Suspense>
 				</div>

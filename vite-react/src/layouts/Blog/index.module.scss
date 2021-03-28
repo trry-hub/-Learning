@@ -3,9 +3,11 @@
 	min-height: 100vh;
 	display: grid;
 	grid-template-rows: auto 1fr auto;
+	.layout-content {
+		background-color: transparent;
+	}
 }
 .go-top {
-	position: fixed;
 	transform: scale(0);
 	transition: all 0.3s;
 }

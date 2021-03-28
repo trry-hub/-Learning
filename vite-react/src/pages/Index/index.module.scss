@@ -1,0 +1,16 @@
+.wrap {
+	padding: 20px 30px;
+	box-sizing: border-box;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 0 50px;
+    // background-color: #F0F0F0;
+	.list-wrap {
+		box-sizing: border-box;
+	}
+	.card-wrap {
+		.item {
+			margin-bottom: 20px;
+		}
+	}
+}

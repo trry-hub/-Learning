@@ -1,0 +1,23 @@
+.archive {
+	padding: 10px 15px;
+	border: 1px solid #e3e3e3;
+	border-radius: 4px;
+
+	.wrap {
+		margin-top: 40px;
+		.item{
+			.year{
+				color: red;
+				font-size: 24px;
+				margin-bottom: 5px;
+			}
+			.date{
+				font-size: 16px;
+				color: red;
+			}
+			.content{
+				font-size: 16px;
+			}
+		}
+	}
+}

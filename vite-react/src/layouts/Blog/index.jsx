@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 
 import routes from "@/routes";
 import Loading from "@/components/Loading";
+import Scrollbar from "@/components/Scrollbar";
 // 引入组件
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -68,18 +69,20 @@ const Blog = (props) => {
 				</div>
 				<div className={css["layout-content"]}>
 					<Suspense fallback={<Loading />}>
-						<Switch>
-							<Route path="/count" component={Counts} />
-							<Route path="/blog/index" component={Index} />
-							<BlogList
-								render={() => (
-									<Route
-										path={componentsChild.pathname}
-										component={componentsChild.component}
-									/>
-								)}
-							/>
-						</Switch>
+						<Scrollbar>
+							<Switch>
+								<Route path="/count" component={Counts} />
+								<Route path="/blog/index" component={Index} />
+								<BlogList
+									render={() => (
+										<Route
+											path={componentsChild.pathname}
+											component={componentsChild.component}
+										/>
+									)}
+								/>
+							</Switch>
+						</Scrollbar>
 					</Suspense>
 				</div>
 

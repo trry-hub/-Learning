@@ -19,9 +19,8 @@ export default class Scrollbar extends Component {
         autoHide
         autoHideTimeout={1000}
         autoHideDuration={200}
-        autoHeight
+        autoHeight={false}
         autoHeightMin={0}
-        autoHeightMax={200}
         thumbMinSize={30}
         universal={true}
         {...this.props} />

@@ -1,20 +1,24 @@
 import nav from "./index.module.scss";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router";
 import { Button } from "antd";
+import { navList } from "@/router";
+
+import logo from "@/assets/images/logo.gif";
 
 const Nav = (props) => {
 	// 初始化 satae
 	const [navHeight, setNavHeight] = useState(0);
-	const myRef = React.createRef();
+	const myRef = useRef(null);
+	const [list] = useState(navList);
 
 	useEffect(() => {
 		setNavHeight(myRef.current.offsetHeight);
-	}, [myRef]);
+	}, []);
 
-	const { scrollTop, list, history } = props;
+	const { scrollTop, history } = props;
 	return (
 		<div style={{ height: `${navHeight}px` }}>
 			<div
@@ -23,38 +27,38 @@ const Nav = (props) => {
 			>
 				<div
 					className={nav["left-grid"]}
-					style={{ gridTemplateColumns: `repeat(${list.length + 1}, auto)` }}
+					style={{ gridTemplateColumns: `repeat(${navList.length + 1}, auto)` }}
 				>
 					<img
 						className={`${nav["logo"]}`}
-						src={require("@/assets/images/logo.gif").default}
+						src={logo}
 						alt="trry"
 						onClick={() => history.push("/")}
 					/>
 					{list.map((item, index) => {
-						return item.pathname.indexOf("http") === -1 ? (
+						return item.path.indexOf("http") === -1 ? (
 							<NavLink
-								to={{ pathname: "/blog" + item.pathname }}
+								to={{ pathname: item.path }}
 								className={`${nav["btn"]}`}
 								key={index}
 							>
-								{item.name}
+								{item.meta?.title}
 							</NavLink>
 						) : (
 							<a
 								className={`${nav["btn"]}`}
 								target="_blank"
-								href={item.pathname}
+								href={item.path}
 								rel="noreferrer noreferrer"
-								key={item.id}
+								key={index}
 							>
-								{item.name}
+								{item.meta?.title}
 							</a>
 						);
 					})}
 				</div>
 				<div className={nav["right-grid"]}>
-					<Button type="primary">Primary</Button>
+					<Button type="dashed">Primary</Button>
 				</div>
 			</div>
 		</div>

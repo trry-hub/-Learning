@@ -2,6 +2,8 @@ import React, { PureComponent } from "react";
 import css from "./index.module.scss";
 
 import { MyContext } from "@/utils/context-manager";
+
+import rss from "@/assets/images/rss.png";
 export default class Footer extends PureComponent {
 	// 声明接收
 	static contextType = MyContext;
@@ -33,7 +35,7 @@ export default class Footer extends PureComponent {
 					className={`${css["footer"]} ${distance > 0 ? css["shadow"] : ""}`}
 				>
 					©2020 trry 的技术博客
-					<img src={require("@/assets/images/rss.png").default} alt="rss" />
+					<img src={rss} alt="rss" />
 				</div>
 			</div>
 		);

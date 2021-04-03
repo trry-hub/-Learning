@@ -2,26 +2,7 @@
 	// list-layout-wrap
 	display: grid;
 	grid-template-columns: 270px 1fr;
-	gap: 0 30px;
+	grid-template-rows: auto;
+	gap: 0 15px;
 	padding: 10px 15px;
-	.left {
-		display: grid;
-		gap: 10px 0;
-		.item {
-			border: 1px solid #e3e3e3;
-			border-radius: 4px;
-			padding: 19px;
-			.title {
-				color: #ee4444;
-				font-size: 22px;
-			}
-			ul {
-				margin-top: 10px;
-				li {
-					line-height: 25px;
-					position: relative;
-				}
-			}
-		}
-	}
 }

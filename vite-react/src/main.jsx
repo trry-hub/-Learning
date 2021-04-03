@@ -1,25 +1,22 @@
-// 重置默认样式
-// import "./utils/reset.css";
-import "normalize.css";
-
-// 处理svg图标
-import "@/assets/svg";
-
 // 引入React
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Redirect, Switch, Route } from "react-router-dom";
 
+// 重置默认样式
+// import "./utils/reset.css";
+import "normalize.css";
+// 处理svg图标
+import "@/assets/svg";
+
 // 统一状态管理
 import store from "./redux/store";
 import { Provider } from "react-redux";
-
 // 引入全局方法
 import "@/utils";
 
 // 引入App组件
 import App from "./App";
-
 import Blog from "@/layouts/Blog";
 
 ReactDOM.render(

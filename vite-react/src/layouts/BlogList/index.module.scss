@@ -1,8 +1,19 @@
 .list-layout-wrap {
 	// list-layout-wrap
-	display: grid;
-	grid-template-columns: 270px 1fr;
-	grid-template-rows: auto;
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+	flex-wrap: wrap;
 	gap: 0 15px;
 	padding: 10px 15px;
+	box-sizing: border-box;
+	.left {
+		margin-bottom: 15px;
+		order: 2;
+		flex: 1 1 270px;
+	}
+	.right {
+		flex: 39;
+		margin-bottom: 15px;
+	}
 }

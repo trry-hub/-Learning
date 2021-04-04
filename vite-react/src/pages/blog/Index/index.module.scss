@@ -1,14 +1,17 @@
 .wrap {
 	padding: 20px 30px;
 	box-sizing: border-box;
-	display: grid;
-	grid-template-columns: 2fr 1fr;
+	display: flex;
+	flex-wrap: wrap;
 	gap: 0 50px;
-    // background-color: #F0F0F0;
 	.list-wrap {
+		flex: 39;
 		box-sizing: border-box;
 	}
 	.card-wrap {
+		margin-bottom: 15px;
+		order: 2;
+		flex: 1 1 500px;
 		.item {
 			margin-bottom: 20px;
 		}

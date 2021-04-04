@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { router } from "@/router";
@@ -29,9 +29,9 @@ const RouterView = (props) => {
 		) : (
 			<Redirect key={i} path={item.path} to={item.redirect}></Redirect>
 		);
-    });
-    console.log(12);
-    
+	});
+	console.log("RouterView");
+
 	return (
 		<Switch>
 			{routerDatepath
@@ -46,7 +46,7 @@ const RouterView = (props) => {
 								//api 路由相关参数参数及其它
 								(api) => {
 									//动态的title
-									document.title = 'trry-'+meta?.title || "blog";
+									document.title = "trry-" + meta?.title || "blog";
 									//把下一级路由参数存入props中
 									return children ? (
 										<RouterView routers={children} />

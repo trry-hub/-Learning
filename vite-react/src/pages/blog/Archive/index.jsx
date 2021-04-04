@@ -60,7 +60,9 @@ const Archive = (props) => {
 							<span className={css["date"]}>{item.date}</span>
 							<ul className={css["content"]}>
 								<li>
-									<Link to={item.path}>{item.subContext}</Link>
+									<Link className={css["tag-link"]} to={item.path}>
+										{item.subContext}
+									</Link>
 								</li>
 							</ul>
 						</Timeline.Item>

@@ -39,7 +39,7 @@ const ListLayout = (props) => {
 		},
 	];
 
-	const [list] = useState(arr)
+	const [list] = useState(arr);
 	return (
 		<div className={css["list-layout-wrap"]}>
 			<div className={css["left"]}>

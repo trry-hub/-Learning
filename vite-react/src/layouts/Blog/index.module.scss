@@ -15,7 +15,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	position: fixed;
 	bottom: 60px;
 	right: 70px;
 	border-radius: 50%;
@@ -24,30 +23,10 @@
 	transform: scale(1);
 	color: #428bca;
 	&:hover {
-		animation: play 0.3s ease-in forwards;
+		color: red;
+		box-shadow: 0 0 20px #ff6700;
 	}
 	.go-top-icon {
 		font-size: 35px;
-	}
-}
-
-@keyframes play {
-	0% {
-		color: #ff6700;
-	}
-	25% {
-		transform: scale(1.2);
-	}
-	50% {
-		transform: scale(1);
-		box-shadow: 0 0 20px #ff6700;
-	}
-	75% {
-		transform: scale(1.3);
-	}
-	100% {
-		transform: scale(1);
-		color: red;
-		box-shadow: 0 0 20px #ff6700;
 	}
 }

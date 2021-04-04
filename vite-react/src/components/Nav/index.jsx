@@ -20,15 +20,12 @@ const Nav = (props) => {
 
 	const { scrollTop, history } = props;
 	return (
-		<div style={{ height: `${navHeight}px` }}>
+		<div className={nav["nav-wrapper"]} style={{ height: `${navHeight}px` }}>
 			<div
 				className={`${nav["nav-wrap"]} ${scrollTop > 0 ? nav["shadow"] : ""}`}
 				ref={myRef}
 			>
-				<div
-					className={nav["left-grid"]}
-					style={{ gridTemplateColumns: `repeat(${navList.length + 1}, auto)` }}
-				>
+				<div className={nav["left-grid"]}>
 					<img
 						className={`${nav["logo"]}`}
 						src={logo}

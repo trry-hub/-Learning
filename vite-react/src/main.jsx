@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Redirect, Switch, Route } from "react-router-dom";
 
 // 重置默认样式
-// import "./utils/reset.css";
+import "./assets/reset.css";
 import "normalize.css";
 // 处理svg图标
 import "@/assets/svg";

@@ -11,7 +11,7 @@ import React, {
 	lazy,
 	Fragment,
 } from "react";
-import {  withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { navList } from "@/router";
@@ -31,7 +31,7 @@ import { getFileName, useScrollHeight } from "@/utils/index";
 const BlogList = lazy(() => import("@/layouts/BlogList"));
 const Archive = lazy(() => import("@/pages/Archive"));
 const RouterView = lazy(() => import("@/components/RouterView"));
-import {blog} from '@/router/blog'
+import { blog } from "@/router/blog";
 
 // Blog UI组件
 const Blog = (props) => {
@@ -73,9 +73,7 @@ const Blog = (props) => {
 	return (
 		<Fragment>
 			<div className={css["layout-wrap"]}>
-				<div>
-					<Nav scrollTop={scrollTop} />
-				</div>
+				<Nav scrollTop={scrollTop} />
 				<div className={css["layout-content"]}>
 					<Suspense fallback={<Loading />}>
 						<Scrollbar ref={scrollbars} onScroll={onScroll}>
@@ -92,9 +90,7 @@ const Blog = (props) => {
 						</Scrollbar>
 					</Suspense>
 				</div>
-				<div className={css["layout-bottom"]}>
-					<Footer documentHeight={documentHeight} scrollTop={scrollTop} />
-				</div>
+				<Footer documentHeight={documentHeight} scrollTop={scrollTop} />
 			</div>
 			<div
 				className={`${scrollTop > 100 ? css["show-icon"] : css["go-top"]}`}

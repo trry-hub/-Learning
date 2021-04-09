@@ -2,6 +2,7 @@ import css from "./index.module.scss";
 
 import React from "react";
 import { Link } from "react-router-dom";
+import { Badge } from "antd";
 
 const TagItem = (props) => {
 	const { title, path, num } = props;
@@ -12,7 +13,7 @@ const TagItem = (props) => {
 					<div className={css["left"]}>
 						<Link to={path}>{title}</Link>
 					</div>
-					{num && <div className={css["right-num"]}>{num}</div>}
+					<Badge className={css["right-num"]} count={num} />
 				</div>
 			)}
 		</>

@@ -1,6 +1,6 @@
 import infostyle from "./index.module.scss";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SvgIcon from "@/components/SvgIcon";
 
 const Info = () => {
@@ -16,7 +16,11 @@ const Info = () => {
 	];
 	const [imgname, setImgname] = useState("2103438487");
 
-	const mouseEnter = (id) => {
+	useEffect(() => {
+		mouseEnter();
+	}, []);
+
+	const mouseEnter = (id = imgname) => {
 		setImgname(id);
 	};
 
@@ -55,7 +59,6 @@ const Info = () => {
 					</div>
 				</div>
 			</div>
-
 			<div className={infostyle["message-wrap"]}>
 				<SvgIcon iconClass="message" className={infostyle["message"]} />
 				<div className={infostyle["grid-item"]}>

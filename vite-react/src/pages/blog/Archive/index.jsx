@@ -3,7 +3,7 @@ import css from "./index.module.scss";
 import React from "react";
 import { Link } from "react-router-dom";
 import { Timeline } from "antd";
-import { ClockCircleOutlined } from "@ant-design/icons";
+//import { ClockCircleOutlined } from "@ant-design/icons";
 
 const Archive = (props) => {
 	const list = [

@@ -9,7 +9,7 @@ const Tag = () => {
 		{
 			title: "Git",
 			path: "/",
-			num: 12,
+			num: 0,
 		},
 		{
 			title: "Git",
@@ -34,7 +34,7 @@ const Tag = () => {
 		setCount(++count);
 	};
 	return (
-		<div className={css["tag-wrap"]} onClick={() => click(count)}>
+		<div className={css["tag-wrap"]}>
 			{tagList.map((item, index) => (
 				<TagItem {...item} key={index} />
 			))}

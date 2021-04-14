@@ -12,7 +12,7 @@ export const blog = [
 	{
 		path: "",
 		redirect: "/blog/archive",
-		component: lazy(() => import("@/layouts/BlogList/Index")),
+		component: lazy(() => import("@/layouts/BlogList/index")),
 		children: [
 			{
 				path: "/blog/archive",

@@ -19,24 +19,18 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: '{{ properCase componentName }}',
-    props: {},
-    data() {
-        return {
-            form: {},
-            rules: {}
+<script lang="ts">
+import {defaultComponent} from 'vue'
+export default defineComponent({
+    name: '{{properCase name}}',
+    setup(){
+        onMounted(){
+            if (this.$route.params.id) {
+                this.getInfo()
+            }
         }
-    },
-    created() {},
-    mounted() {
-        if (this.$route.params.id) {
-            this.getInfo()
-        }
-    },
-    methods: {
-        getInfo() {
+        const obj= {}
+        const getInfo = ()=> {
             this.$api.get('XX', {
                 params: {
                     id: this.$route.params.id
@@ -44,8 +38,8 @@ export default {
             }).then(res => {
                 console.log(res)
             })
-        },
-        onSubmit() {
+        }
+        const onSubmit=() => {
             if (this.$route.params.id) {
                 this.$refs['form'].validate(valid => {
                     if (valid) {
@@ -73,10 +67,32 @@ export default {
                     }
                 })
             }
-        },
-        onCancel() {
+        }
+        const onCancel = () => {
             this.$router.back()
         }
+        return {
+
+        }
+    }
+});
+</script>
+<script>
+export default {
+    name: '{{ properCase componentName }}',
+    props: {},
+    data() {
+        return {
+            form: {},
+            rules: {}
+        }
+    },
+    created() {},
+    mounted() {
+        
+    },
+    methods: {
+        
     }
 }
 </script>

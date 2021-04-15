@@ -1,7 +1,7 @@
 <template>
     <div class="slide-wrapper">
         <div class="slide-content">
-            234234
+            234234测试
             <div class="slide-page" />
             <div class="slide-page" />
             <div class="slide-page" />

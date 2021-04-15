@@ -23,12 +23,12 @@ const routes: Array<RouteRecordRaw> = [
         path: '/suspense',
         name: 'Suspense',
         component: () => import(/* webpackChunkName: "suspense" */ '../views/Suspense.vue')
-    },
-    {
-        path: '*',
-        name: '404',
-        component: () => import(/* webpackChunkName: "suspense" */ '../views/404.vue')
     }
+    // {
+    //     path: '',
+    //     name: '404',
+    //     component: () => import(/* webpackChunkName: "suspense" */ '../views/404.vue')
+    // }
 ]
 
 const router = createRouter({

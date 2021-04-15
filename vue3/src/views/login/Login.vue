@@ -4,22 +4,24 @@
     </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import {defineComponent} from 'vue'
+export default defineComponent({
     name: 'Login',
-    props: {},
-    data() {
-        return {}
-    },
-    created() {},
-    mounted() {},
-    methods: {}
-}
+    setup() {
+        const age: number = 18
+        console.log(age)
+        
+        return {
+            name: 123
+        }
+    }
+})
 </script>
 
 <style lang="scss" scoped>
 // scss
 .login {
-    // login 页面
+	// login 页面
 }
 </style>

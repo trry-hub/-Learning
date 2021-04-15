@@ -21,6 +21,8 @@
 import { lazy } from "react";
 import { blog } from "./blog";
 
+import Error from "@/pages/Error";
+
 const router = [
 	{
 		path: "/blog",
@@ -73,9 +75,9 @@ const router = [
 		},
 	},
 	{
-		path: "/404",
-		component: lazy(() => import("@/pages/Error")),
-		exact: true,
+		path: "*",
+		component: Error,
+		exact: false,
 	},
 ];
 

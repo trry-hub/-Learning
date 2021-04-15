@@ -1,6 +1,6 @@
 import css from "./index.module.scss";
 
-import React, { lazy, useMemo, useState } from "react";
+import React, { lazy, useState } from "react";
 
 const Time = lazy(() => import("./components/Time"));
 const LeftTag = lazy(() => import("./components/LeftTag"));
@@ -48,7 +48,7 @@ const ListLayout = (props) => {
 					<LeftTag key={index} {...item} />
 				))}
 			</div>
-			<div className={css["right"]}>{useMemo(()=> {props.render();},[])}</div>
+			<div className={css["right"]}>{props.render()}</div>
 		</div>
 	);
 };

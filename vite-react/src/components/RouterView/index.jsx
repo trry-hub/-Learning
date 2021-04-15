@@ -1,57 +1,68 @@
 import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { withRouter, Switch } from "react-router";
+import { Route, Redirect } from "react-router-dom";
 import { router } from "@/router";
 
 const RouterView = (props) => {
-	//props接收配置文件
-	//routers 下一级路由的参数
-	//defaultConfig默认传参
 	const { routers } = props;
-	let routerDate = routers ? routers : router;
-	//数据二次处理
+	const [routerDate] = useState(routers ? routers : router);
+	const [routerDatepath, setrouterDatepath] = useState([]);
+	const [defaultRedirect, setdefaultRedirect] = useState([]);
 
-	//筛除带有重定向的
-	let routerDatepath = routerDate.filter((item) => {
-		return !item.redirect;
-	});
-	//筛选重定向
-	let defualtRouter = routerDate.filter((item) => {
-		return item.redirect;
-	});
-	//重定向
-	let defualtRedirect = defualtRouter.map((item, i) => {
-		return item.children ? (
-			<item.component
-				key={i}
-				render={() => <RouterView routers={item.children} />}
-			/>
-		) : (
-			<Redirect key={i} path={item.path} to={item.redirect}></Redirect>
+	useEffect(() => {
+		//筛除带有重定向的
+		let routerDatepath = routerDate.filter((item) => {
+			return !item.redirect && item.path.indexOf("http") === -1;
+		});
+		setrouterDatepath(routerDatepath);
+
+		let tempRedirect = routerDate.filter(
+			(item) => item.redirect && item.path.indexOf("http") === -1
 		);
-	});
-	console.log("RouterView");
+		//重定向
+		let defaultRedirect = tempRedirect.map((item, i) => {
+			return item.children ? (
+				<Route key={i}>
+					<item.component
+						render={() => <RouterView routers={item.children} />}
+					/>
+				</Route>
+			) : (
+				<Redirect key={i} path={item.path} to={item.redirect}></Redirect>
+			);
+		});
+		setdefaultRedirect(defaultRedirect);
+	}, [routerDate]);
+
+	console.log("RouterView", routerDatepath);
 
 	return (
-		<Switch>
+		<>
 			{routerDatepath
 				?.map(({ path, meta, component, children, exact = true }, index) => {
 					const Comp = component;
 					// 一个大坑 要用render 不然用component会导致页面的回流
+
+					console.log(path, exact);
 					return (
 						<Route
 							path={path}
 							exact={exact}
 							render={
 								//api 路由相关参数参数及其它
-								(api) => {
+								(arg) => {
 									//动态的title
 									document.title = "trry-" + meta?.title || "blog";
 									//把下一级路由参数存入props中
 									return children ? (
-										<RouterView routers={children} />
+										<Route key={index}>
+											<item.component
+												render={() => <RouterView routers={children} />}
+											/>
+										</Route>
 									) : (
-										<Comp routers={children} {...api}></Comp>
+										// <RouterView routers={children} />
+										<Comp {...arg} />
 									);
 								}
 							}
@@ -60,8 +71,8 @@ const RouterView = (props) => {
 					);
 					//重定向
 				})
-				.concat(defualtRedirect)}
-		</Switch>
+				.concat(defaultRedirect)}
+		</>
 	);
 };
 

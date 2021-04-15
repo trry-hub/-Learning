@@ -10,9 +10,10 @@ export const blog = [
 		},
 	},
 	{
-		path: "",
+		path: "/blog",
 		redirect: "/blog/archive",
-		component: lazy(() => import("@/layouts/BlogList/Index")),
+		exact: false,
+		component: lazy(() => import("@/layouts/BlogList")),
 		children: [
 			{
 				path: "/blog/archive",

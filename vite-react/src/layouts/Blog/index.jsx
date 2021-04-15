@@ -4,44 +4,40 @@ import css from "./index.module.scss";
 // 引入三方库
 import React, {
 	useState,
-	useEffect,
 	useMemo,
 	useRef,
 	Suspense,
 	lazy,
 	Fragment,
 } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { navList } from "@/router";
 import Loading from "@/components/Loading";
 import Scrollbar from "@/components/Scrollbar";
 // 引入组件
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import Counts from "@/containers/Counts";
 import SvgIcon from "@/components/SvgIcon";
 // 引入actions
 import { setScroll } from "@/redux/actions/blog-layout";
+import { blog } from "@/router/blog";
 
 const RouterView = lazy(() => import("@/components/RouterView"));
-import { blog } from "@/router/blog";
+
+import Index from "@/pages/blog/Index";
+import Tag from "@/pages/blog/Tag";
 
 // Blog UI组件
 const Blog = (props) => {
 	const [scrollTop, setScrollTop] = useState(0);
 	const scrollbars = useRef();
-
-	console.log(props.location);
-
 	/*监听滚动*/
 	const onScroll = (e) => {
 		setScrollTop(scrollbars.current.getScrollTop());
 		if (e.target.scrollTop + e.target.clientHeight === e.target.scrollHeight) {
 			// 滚动到底部需要做的事情
 			console.log("daodile");
-		} else {
 		}
 	};
 
@@ -57,16 +53,24 @@ const Blog = (props) => {
 							universal={true}
 							onScroll={onScroll}
 						>
+							{/* {
+								<Switch>
+									<Route
+										path="/blog/index"
+										exact={true}
+										render={() => <Index />}
+									></Route>
+									<Route path="/blog/tag" render={() => <Tag />}></Route>
+								</Switch>
+							} */}
 							{useMemo(
 								() => (
-									<RouterView routers={blog} />
+									<Switch>
+										<RouterView routers={blog} />
+									</Switch>
 								),
 								[]
 							)}
-							{/* <Switch>
-								<Route path="/count" component={Counts} />
-								<Route path="/blog/index" component={Index} />
-							</Switch> */}
 						</Scrollbar>
 					</Suspense>
 				</div>

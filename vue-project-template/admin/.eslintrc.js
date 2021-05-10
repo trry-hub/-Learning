@@ -12,7 +12,10 @@ module.exports = {
 		process: true,
 		require: true,
 	},
-	extends: ["plugin:vue/strongly-recommended", "eslint:recommended"],
+	extends: [
+		"plugin:vue/strongly-recommended",
+		"eslint:recommended",
+	],
 	parserOptions: {
 		ecmaVersion: 2015,
 		parser: "babel-eslint",
@@ -45,7 +48,7 @@ module.exports = {
 			2,
 			4,
 			{
-				SwitchCase: 1,
+				SwitchCase: 2,
 			},
 		],
 		"key-spacing": [
@@ -128,9 +131,15 @@ module.exports = {
 				after: true,
 			},
 		],
-    "no-var": [2, "always"],
-    "prefer-const": [2,"never"],
-    "prefer-template": [2, 'always'],
+		"no-var": 2,
+		"prefer-const": [
+			2,
+			{
+				destructuring: "any",
+				ignoreReadBeforeAssign: false,
+			},
+		],
+		"prefer-template": 2,
 		// Vue - https://github.com/vuejs/eslint-plugin-vue
 		"vue/html-indent": [2, 4],
 		"vue/max-attributes-per-line": 0,

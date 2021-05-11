@@ -3,6 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import { axios, api} from '@/api'
+
+Vue.prototype.$axios = axios
+Vue.prototype.$get = api.get
+Vue.prototype.$post = api.post
+
 Vue.config.productionTip = false
 
 new Vue({

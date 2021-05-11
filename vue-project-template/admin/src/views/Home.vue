@@ -6,7 +6,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
@@ -15,10 +14,23 @@ export default {
         HelloWorld
     },
     mounted() {
-        let nihao = 123
-        const a = 1
-        nihao = 456
-        console.log(nihao, a)
+        this.getData()
+    },
+    methods: {
+        async getData() {
+            try {
+                // const res = await this.$get('/login', { params: { name: 'zhangsan' } })
+                // console.log(res)
+            
+                console.log(this.$store)
+            
+                const postres = await this.$post('/login', { name: 'zhangsan' })
+                console.log(postres)
+            } catch (error) {
+                console.log(error)
+                
+            }
+        }
     }
 }
 </script>

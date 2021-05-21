@@ -6,6 +6,15 @@
             <div class="slide-page" />
             <div class="slide-page" />
             <div class="slide-page" />
+            <div class="parent">
+                <div class="item child-0" />
+                <div class="item child-1" />
+                <div class="item child-1" />
+                <div class="item child-0" />
+                <div class="item child-0" />
+                <div class="item child-0" />
+                <div class="item child-1" />
+            </div>
         </div>
     </div>
 </template>
@@ -32,4 +41,16 @@ export default defineComponent({
 
 <style lang="scss">
 // scss
+.parent {
+	width: 100%;
+	.item {
+		width: 100%;
+		height: 30px;
+		margin: 5px 0;
+		background-color: #898989;
+	}
+}
+.parent .child-0:nth-child(even) {
+	background-color: red;
+}
 </style>

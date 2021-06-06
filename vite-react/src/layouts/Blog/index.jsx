@@ -39,33 +39,21 @@ const Blog = (props) => {
 			<div className={css['layout-wrap']}>
 				<Nav scrollTop={scrollTop} />
 				<div className={css['layout-content']}>
-					<Suspense fallback={<Loading />}>
-						<Scrollbar
-							ref={scrollbars}
-							hideTracksWhenNotNeeded={true}
-							universal={true}
-							onScroll={onScroll}
-						>
-							{/* {
-								<Switch>
-									<Route
-										path="/blog/index"
-										exact={true}
-										render={() => <Index />}
-									></Route>
-									<Route path="/blog/tag" render={() => <Tag />}></Route>
-								</Switch>
-							} */}
-							{useMemo(
-								() => (
-									<Switch>
-										<RouterView routers={blog} />
-									</Switch>
-								),
-								[]
-							)}
-						</Scrollbar>
-					</Suspense>
+					<Scrollbar
+						ref={scrollbars}
+						hideTracksWhenNotNeeded={true}
+						universal={true}
+						onScroll={onScroll}
+					>
+						{useMemo(
+							() => (
+								<Suspense fallback={<Loading />}>
+									<RouterView routers={blog} />
+								</Suspense>
+							),
+							[]
+						)}
+					</Scrollbar>
 				</div>
 				<Footer scrollTop={scrollTop} />
 			</div>

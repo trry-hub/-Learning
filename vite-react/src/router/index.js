@@ -18,79 +18,82 @@
  * ]
  */
 
-import { lazy } from "react";
-import { blog } from "./blog";
+import { lazy } from 'react'
+import { blog } from './blog'
+import { treeFindID, treeFindPathID } from '@/utils'
 
-import Error from "@/pages/Error";
+import Error from '@/pages/Error'
 
 const router = [
 	{
-		path: "/blog",
-		component: lazy(() => import("@/layouts/Blog")),
+		path: '/blog',
+		component: lazy(() => import('@/layouts/Blog')),
 		children: blog,
 		meta: {
-			title: "Blog",
-			icon: "home",
-			entrance: true,
-		},
+			title: 'Blog',
+			icon: 'home',
+			entrance: true
+		}
 	},
 	{
-		path: "https://github.com/Name-Terry",
+		path: 'https://github.com/Name-Terry',
 		meta: {
-			title: "GitHub",
-			icon: "github",
-			entrance: true,
-		},
+			title: 'GitHub',
+			icon: 'github',
+			entrance: true
+		}
 	},
 	{
-		path: "tencent://message/?uin=2103438487&Site=qq&Menu=yes",
+		path: 'tencent://message/?uin=2103438487&Site=qq&Menu=yes',
 		meta: {
-			title: "QQ",
-			icon: "qq",
-			entrance: true,
-		},
+			title: 'QQ',
+			icon: 'qq',
+			entrance: true
+		}
 	},
 	{
-		path: "",
+		path: '',
 		meta: {
-			title: "Diary",
-			icon: "xin",
-			entrance: true,
-		},
+			title: 'Diary',
+			icon: 'xin',
+			entrance: true
+		}
 	},
 	{
-		path: "https://www.youtube.com",
+		path: 'https://www.youtube.com',
 		meta: {
-			title: "YouTube",
-			icon: "youtube",
-			entrance: true,
-		},
+			title: 'YouTube',
+			icon: 'youtube',
+			entrance: true
+		}
 	},
 	{
-		path: "",
+		path: '',
 		meta: {
-			title: "FaceBook",
-			icon: "facebook",
-			entrance: true,
-		},
+			title: 'FaceBook',
+			icon: 'facebook',
+			entrance: true
+		}
 	},
 	{
-		path: "*",
+		path: '*',
 		component: Error,
-		exact: false,
-	},
-];
+		exact: false
+	}
+]
 
-function fn(route, callback, arr) {
-	route.forEach((tmpRouter) => {
-		if (callback(tmpRouter)) arr.push(tmpRouter);
-		if (tmpRouter.children) fn(tmpRouter.children, callback, arr);
-	});
-}
-const navList = [];
-fn(router, (item) => item.meta?.nav === true, navList);
+let navList = []
+treeFindID(router, (item) => item.meta?.nav === true, navList)
+navList = navList.map((item) => {
+	let path = []
+	treeFindPathID(router, (fnItem) => fnItem?.path === item?.path, path, 'path').filter(
+		(item) => item?.indexOf('/') === 0
+	)
+	item.pathname = path.join('') + '/' + item.path
+	return item
+})
 
-const entranceList = [];
-fn(router, (item) => item.meta?.entrance === true, entranceList);
+const entranceList = []
+treeFindID(router, (item) => item.meta?.entrance === true, entranceList, '')
 
-export { router, entranceList, navList };
+export { router, entranceList, navList }

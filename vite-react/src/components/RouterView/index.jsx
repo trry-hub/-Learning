@@ -10,6 +10,7 @@ const RouterView = (props) => {
 	const [defaultRedirect, setdefaultRedirect] = useState([])
 
 	useEffect(() => {
+		console.log(routerDate)
 		//筛除带有重定向的
 		let routerDatepath = routerDate.filter((item) => {
 			return !item.redirect && item.path.indexOf('http') === -1
@@ -20,27 +21,27 @@ const RouterView = (props) => {
 			(item) => item.redirect && item.path.indexOf('http') === -1
 		)
 		//重定向
-		let defaultRedirect = tempRedirect.map((item, i) => {
-			return item.children ? (
-				<Route key={i}>
-					<item.component render={() => <RouterView routers={item.children} />} />
+		let defaultRedirect = tempRedirect.map(({ pathname, meta, component, children, exact = true }, i) => {
+			const Com = component
+			return children ? (
+				<Route exact={exact} key={i}>
+					<Com render={() => <RouterView routers={children} />} />
 				</Route>
 			) : (
-				<Redirect key={i} path={item.path} to={item.redirect}></Redirect>
+				<Redirect key={i} to={item.redirect}></Redirect>
 			)
 		})
 		setdefaultRedirect(defaultRedirect)
 	}, [routerDate])
 
 	return (
-		<>
+		<Switch>
 			{routerDatepath
-				?.map(({ path, meta, component, children, exact = true }, index) => {
+				?.map(({ pathname, meta, component, children, exact = true }, index) => {
 					const Comp = component
-					// 一个大坑 要用render 不然用component会导致页面的回流
 					return (
 						<Route
-							path={path}
+							path={pathname}
 							exact={exact}
 							render={
 								//api 路由相关参数参数及其它
@@ -49,13 +50,12 @@ const RouterView = (props) => {
 									document.title = 'trry-' + meta?.title || 'blog'
 									//把下一级路由参数存入props中
 									return children ? (
-										<Route key={index}>
-											<item.component
+										<Route exact={exact} key={index}>
+											<Comp
 												render={() => <RouterView routers={children} />}
 											/>
 										</Route>
 									) : (
-										// <RouterView routers={children} />
 										<Comp {...arg} />
 									)
 								}
@@ -66,7 +66,7 @@ const RouterView = (props) => {
 					//重定向
 				})
 				.concat(defaultRedirect)}
-		</>
+		</Switch>
 	)
 }
 

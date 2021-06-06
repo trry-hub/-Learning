@@ -35,7 +35,7 @@ const Nav = (props) => {
 					{list.map((item, index) => {
 						return item.path.indexOf("http") === -1 ? (
 							<NavLink
-								to={{ pathname: item.path }}
+								to={{ pathname: item.pathname }}
 								className={`${nav["btn"]}`}
 								key={index}
 							>

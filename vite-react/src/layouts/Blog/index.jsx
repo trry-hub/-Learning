@@ -3,11 +3,10 @@ import css from './index.module.scss'
 
 // 引入三方库
 import React, { useState, useMemo, useRef, Suspense, lazy, Fragment } from 'react'
-import { withRouter, Switch, Route } from 'react-router-dom'
+import { withRouter} from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import Loading from '@/components/Loading'
-import Scrollbar from '@/components/Scrollbar'
 // 引入组件
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
@@ -18,8 +17,6 @@ import { blog } from '@/router/blog'
 
 const RouterView = lazy(() => import('@/components/RouterView'))
 
-import Index from '@/pages/blog/Index'
-import Tag from '@/pages/blog/Tag'
 
 // Blog UI组件
 const Blog = (props) => {
@@ -36,15 +33,9 @@ const Blog = (props) => {
 
 	return (
 		<Fragment>
-			<div className={css['layout-wrap']}>
-				<Nav scrollTop={scrollTop} />
-				<div className={css['layout-content']}>
-					<Scrollbar
-						ref={scrollbars}
-						hideTracksWhenNotNeeded={true}
-						universal={true}
-						onScroll={onScroll}
-					>
+				<div className={css['layout-wrap']}>
+					<Nav scrollTop={scrollTop} />
+					<div className={css['layout-content']}>
 						{useMemo(
 							() => (
 								<Suspense fallback={<Loading />}>
@@ -53,10 +44,9 @@ const Blog = (props) => {
 							),
 							[]
 						)}
-					</Scrollbar>
+					</div>
+					<Footer scrollTop={scrollTop} />
 				</div>
-				<Footer scrollTop={scrollTop} />
-			</div>
 			<div
 				className={`${scrollTop > 100 ? css['show-icon'] : css['go-top']}`}
 				onClick={() => scrollbars.current.scrollToTop()}

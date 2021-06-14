@@ -2,12 +2,12 @@
 import css from './index.module.scss'
 
 // 引入三方库
-import React, { useState, useMemo, useRef, Suspense, lazy, Fragment } from 'react'
-import { withRouter} from 'react-router-dom'
+import React, { useState, useEffect, useMemo, useRef, Suspense, lazy, Fragment } from 'react'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import Loading from '@/components/Loading'
 // 引入组件
+import Loading from '@/components/Loading'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import SvgIcon from '@/components/SvgIcon'
@@ -15,41 +15,36 @@ import SvgIcon from '@/components/SvgIcon'
 import { setScroll } from '@/redux/actions/blog-layout'
 import { blog } from '@/router/blog'
 
-const RouterView = lazy(() => import('@/components/RouterView'))
+import { useScrollHeight, useReStoreScrollTop } from '@/utils'
 
+const RouterView = lazy(() => import('@/components/RouterView'))
 
 // Blog UI组件
 const Blog = (props) => {
-	const [scrollTop, setScrollTop] = useState(0)
-	const scrollbars = useRef()
-	/*监听滚动*/
-	const onScroll = (e) => {
-		setScrollTop(scrollbars.current.getScrollTop())
-		if (e.target.scrollTop + e.target.clientHeight === e.target.scrollHeight) {
-			// 滚动到底部需要做的事情
-			console.log('dao di le')
-		}
+	useReStoreScrollTop()
+	const goTop = () => {
+		document.body.scrollIntoView()
 	}
-
+	const scrollTop = useScrollHeight()
 	return (
 		<Fragment>
-				<div className={css['layout-wrap']}>
-					<Nav scrollTop={scrollTop} />
-					<div className={css['layout-content']}>
-						{useMemo(
-							() => (
-								<Suspense fallback={<Loading />}>
-									<RouterView routers={blog} />
-								</Suspense>
-							),
-							[]
-						)}
-					</div>
-					<Footer scrollTop={scrollTop} />
+			<div className={css['layout-wrap']}>
+				<Nav scrollTop={scrollTop} />
+				<div className={css['layout-content']}>
+					{useMemo(
+						() => (
+							<Suspense fallback={<Loading />}>
+								<RouterView routers={blog} />
+							</Suspense>
+						),
+						[]
+					)}
 				</div>
+				<Footer scrollTop={scrollTop} />
+			</div>
 			<div
 				className={`${scrollTop > 100 ? css['show-icon'] : css['go-top']}`}
-				onClick={() => scrollbars.current.scrollToTop()}
+				onClick={goTop}
 			>
 				<SvgIcon className={css['go-top-icon']} iconClass="goTop" />
 			</div>

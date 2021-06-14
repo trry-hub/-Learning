@@ -23,21 +23,17 @@ export default class Footer extends PureComponent {
 	render() {
 		const { footerHeight } = this.state;
 		const { scrollTop } = this.props;
-		const { documentHeight } = this.context || 0;
-		let distance = documentHeight - document.body.clientHeight - scrollTop;
+		let distance = document.body.scrollHeight - document.body.offsetHeight - scrollTop
 		return (
-			<div
-				className={css["footer-wrap"]}
-				style={{ height: `${footerHeight}px` }}
-			>
+			<div className={css['footer-wrap']} style={{ height: `${footerHeight}px` }}>
 				<div
 					ref={this.footerRef}
-					className={`${css["footer"]} ${distance > 0 ? css["shadow"] : ""}`}
+					className={`${css['footer']} ${distance > 0 ? css['shadow'] : ''}`}
 				>
 					©2020 trry 的技术博客
 					<img src={rss} alt="rss" />
 				</div>
 			</div>
-		);
+		)
 	}
 }

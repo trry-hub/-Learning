@@ -10,7 +10,6 @@ const RouterView = (props) => {
 	const [defaultRedirect, setdefaultRedirect] = useState([])
 
 	useEffect(() => {
-		console.log(routerDate)
 		//筛除带有重定向的
 		let routerDatepath = routerDate.filter((item) => {
 			return !item.redirect && item.path.indexOf('http') === -1

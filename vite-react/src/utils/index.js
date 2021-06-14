@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { useLocation } from 'react-router'
 
 /*eslint no-extend-native: ["error", { "exceptions": ["String"] }]*/
 String.prototype.firstUpperCase = function () {
@@ -7,14 +8,22 @@ String.prototype.firstUpperCase = function () {
 	})
 }
 
-function getFileName(path, loc = '$2') {
+export function getFileName(path, loc = '$2') {
 	const reg = /(.*\/)*([^.]+).*/gi
 	// $1 相对路径  $2 文件名  $3 文件后缀
 	return path.replace(reg, loc)
 }
-
+export function getScrollTop() {
+	var scroll_top = 0
+	if (document.documentElement && document.documentElement.scrollTop) {
+		scroll_top = document.documentElement.scrollTop
+	} else if (document.body) {
+		scroll_top = document.body.scrollTop
+	}
+	return scroll_top
+}
 // 深拷贝
-function deepClone(target) {
+export function deepClone(target) {
 	// 定义一个变量
 	let result
 	// 如果当前需要深拷贝的是一个对象的话
@@ -48,7 +57,7 @@ function deepClone(target) {
 }
 
 // 获取浏览器滚动条位置
-const useScrollHeight = () => {
+export const useScrollHeight = () => {
 	const [scrollheight, setScrollHeight] = useState(0)
 
 	const scroll = useCallback(() => {
@@ -66,14 +75,33 @@ const useScrollHeight = () => {
 	}, [scroll])
 	return scrollheight
 }
+// 回到顶部
+export const useReStoreScrollTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    try {
+      let scrollY = sessionStorage.getItem(pathname)
+      scrollY && window.scrollTo(0, scrollY)
+    } catch (error) {
+      throw error
+    }
+    return () => {
+      try {
+        sessionStorage.setItem(pathname, window.scrollY)    //这里使用scrollY是获取文档window在垂直页面
+      } catch (error) {                                     //的滚动值，如果是特定DOM元素用srcollTop
+        throw error
+      }
+    };
+  }, [pathname])
+}
 
-function treeFindID(tree, callback, arr) {
+export function treeFindID(tree, callback, arr) {
 	tree?.forEach((tmpRouter) => {
 		if (callback(tmpRouter)) arr.push(tmpRouter)
 		if (tmpRouter.children) treeFindID(tmpRouter.children, callback, arr)
 	})
 }
-function treeFindPathID(tree, fun, path = [], field) {
+export function treeFindPathID(tree, fun, path = [], field) {
 	if (!tree) return []
 	for (const data of tree) {
 		path.push(data && data[field])
@@ -86,4 +114,3 @@ function treeFindPathID(tree, fun, path = [], field) {
 	}
 	return []
 }
-export { treeFindID, treeFindPathID, getFileName, deepClone, useScrollHeight }

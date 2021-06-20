@@ -48,7 +48,7 @@ module.exports = {
 			2,
 			4,
 			{
-				SwitchCase: 2,
+				SwitchCase: 1,
 			},
 		],
 		"key-spacing": [

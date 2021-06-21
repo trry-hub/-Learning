@@ -18,6 +18,7 @@ Vue.prototype.$get = api.get
 Vue.prototype.$post = api.post
 
 Vue.config.productionTip = false
+import './assets/styles/reset.scss'
 
 new Vue({
     router,

@@ -52,6 +52,7 @@ export class EXT {
       // 判断源对象是否为空
           if ((source = arguments[i]) != null) {
               for (name in source) {
+                  // eslint-disable-next-line no-prototype-builtins
                   const hasPro = source.hasOwnProperty(name)
                   // 是否遍历源对象的原型链
                   if (hasPro || _default.includePrototype) {
@@ -66,11 +67,15 @@ export class EXT {
                       }
 
                       // 如果复制的是对象或者数组
-                      if (_default.isDeep && sourceItem != null && self.typeMap[siType]) {
+                      if (
+                          _default.isDeep &&
+                    sourceItem != null &&
+                    self.typeMap[siType]
+                      ) {
                           clone =
-                targetItem != null && tiType === siType
-                    ? targetItem
-                    : self.typeMap[siType]()
+                      targetItem != null && tiType === siType
+                          ? targetItem
+                          : self.typeMap[siType]()
                           // 递归
                           target[name] = self.merge(clone, sourceItem)
                       } else {

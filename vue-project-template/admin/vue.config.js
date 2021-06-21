@@ -107,7 +107,7 @@ module.exports = {
 				.options({
 					resources: [
 						'./src/assets/styles/resources/*.scss',
-						'./src/assets/sprites/*.scss',
+						// './src/assets/sprites/*.scss',
 					],
 				})
 				.end()

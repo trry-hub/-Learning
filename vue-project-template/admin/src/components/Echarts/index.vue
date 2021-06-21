@@ -21,6 +21,7 @@
  **/
 import chartsMixins from '@/mixins/charts'
 import { EXT } from '@/utils'
+import { optionsList } from './options'
 export default {
     name: 'Echarts',
     mixins: [chartsMixins],
@@ -28,63 +29,9 @@ export default {
         return {
             chartName: 'charts-container',
             // 图表类型
-            typeList: [{
-                title: {
-                    text: '折线图'
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    type: 'value'
-                },
-                series: [{
-                    type: 'line'
-                }]
-            }, {
-                title: {
-                    text: '柱状图'
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    type: 'value'
-                },
-                series: [{
-                    type: 'bar'
-                }]
-            }, {
-                title: {
-                    text: '饼图'
-                },
-                series: [{
-                    type: 'pie',
-                    radius: '50%',
-                    data: [
-                        { value: 1048, name: '搜索引擎' },
-                        { value: 735, name: '直接访问' },
-                        { value: 580, name: '邮件营销' },
-                        { value: 484, name: '联盟广告' },
-                        { value: 300, name: '视频广告' }
-                    ]
-                }]
-            }, {
-                title: {
-                    text: '区域图'
-                },
-                series: [{
-                    type: 'area',
-                    radius: '50%',
-                    data: [
-                        { value: 1048, name: '搜索引擎' },
-                        { value: 735, name: '直接访问' },
-                        { value: 580, name: '邮件营销' },
-                        { value: 484, name: '联盟广告' },
-                        { value: 300, name: '视频广告' }
-                    ]
-                }]
-            }],
+            typeList: optionsList,
+            // 中国地图基础数据
+            locationData: {},
             // 更新图表的配置参数
             updateOpts: {
                 series: [{
@@ -98,11 +45,26 @@ export default {
                     left: 'center'
                 },
                 tooltip: {
-                    trigger: 'item'
+                    trigger: 'axis'
                 },
                 legend: {
                     orient: 'vertical',
                     left: 'left'
+                },
+                toolbox: {
+                    show: true, // 是否显示工具栏组件。
+                    orient: 'horizontal', // 工具栏 icon 的布局朝向。
+                    itemSize: 15, // 工具栏 icon 的大小
+                    itemGap: 10, // 工具栏 icon 每项之间的间隔。横向布局时为水平间隔，纵向布局时为纵向间隔。
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        dataView: { readOnly: false },
+                        magicType: { type: ['line', 'bar'] },
+                        restore: {},
+                        saveAsImage: {}
+                    }
                 },
                 xAxis: {
                     type: 'category',
@@ -123,15 +85,20 @@ export default {
     },
     methods: {
         // 切换类型
-        __change(type) {
+        async __change(type) {
             const [row] = this.typeList.filter(item => item.series[0].type === type)
             // 深合并
             const params = new EXT().merge({}, this.defaultOpts, row)
-            if (type === 'pie') {
+            if (type !== 'line' && type !== 'bar') {
                 // 饼图 需要删除 x,y 轴
                 delete params.xAxis
                 delete params.yAxis
+                if (type === 'map') {
+                    this.locationData = await this.getGeoJsonData()
+                    this.$echarts.registerMap('china', this.locationData)
+                }
             }
+            this.updateOpts = params
             this[this.chartName].setOption(params, { notMerge: true })
         },
         // 创建charts
@@ -153,6 +120,17 @@ export default {
         onReset() {
             this[this.chartName].dispose()
             this.onCreateChart()
+        },
+
+        /**
+         *  数据处理
+         **/
+        async getGeoJsonData(location = 'china') {
+            try {
+                return await this.$get(`https://unpkg.com/echarts@3.6.2/map/json/${location}.json`)
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 }

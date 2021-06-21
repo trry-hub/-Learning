@@ -26,41 +26,38 @@ const api = axios.create({
 })
 
 // 请求拦截器
-api.interceptors.request.use(config => {
-
-    store.commit['user/token'] = '这个是token'
-
-    console.log(store.state.user.token)
-    config.headers.common['token'] = store.user?.token || ''
-    if (config.method === 'get') {
-        qs
+api.interceptors.request.use(
+    config => {
+        store.commit['user/token'] = '这个是token'
+        config.headers.common['token'] = store.user?.token || ''
+        if (config.method === 'get') {
+            qs
+        }
+        return config
+    },
+    error => {
+        return Promise.reject(error)
     }
-    
-    console.log(config, store)
-    return config
-}, error => {
-    return Promise.reject(error)
-})
+)
 
 // 响应拦截器
-api.interceptors.response.use(response => {
-
-    Message({
-        type: 'warning',
-        error: response.message
-    })
-    if (response.code === 404) {
-        console.log('接口404了')
-    } else if (response.code === -1) {
-        // token过期，需要重新登录
-        toLogin()
+api.interceptors.response.use(
+    response => {
+        if (response.code === 404) {
+            console.log('接口404了')
+        } else if (response.code === -1) {
+            // token过期，需要重新登录
+            toLogin()
+        }
+        return response.data
+    },
+    error => {
+        Message({
+            type: 'error',
+            message: error.message
+        })
+        return Promise.reject(error)
     }
-    return response
-}, error => {
-    return Promise.reject(error)
-})
+)
 
-export {
-    axios,
-    api
-}
+export { axios, api }

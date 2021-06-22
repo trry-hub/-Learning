@@ -1,7 +1,8 @@
 <template>
     <div class="layout-wrap">
         <div class="nav">
-            <Nav />
+            {{ hideMenu }}
+            <Nav v-model="hideMenu" />
         </div>
         <div class="content">
             <div class="container">
@@ -21,7 +22,9 @@ export default {
     name: 'Layout',
     components: { Menu, Nav },
     data() {
-        return {}
+        return {
+            hideMenu: true
+        }
     }
 }
 </script>
@@ -42,7 +45,7 @@ export default {
 	.content {
 		display: flex;
 		flex: 1;
-		.container{
+		.container {
 			width: 100%;
 		}
 		.menu {

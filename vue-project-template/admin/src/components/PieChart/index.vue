@@ -4,7 +4,7 @@
 
 <script>
 import chartsMixins from '@/mixins/charts'
-import { EXT } from '@/utils/util'
+import { EXT } from '@/utils'
 export default {
     name: 'PieChart',
     mixins: [chartsMixins],

@@ -3,7 +3,8 @@
         <div class="left">Echarts 示例</div>
         <div class="user">
             <el-avatar> user </el-avatar>
-            <i class="switch-slide" :class="value?'el-icon-s-unfold':'el-icon-s-fold'" @click="onSwitch" />
+            <i class="switch-slide-icon" :class="value?'el-icon-s-unfold':'el-icon-s-fold'" @click="$emit('input', !value)" />
+            <i class="switch-slide-icon el-icon-s-operation" />
         </div>
     </div>
 </template>
@@ -11,23 +12,9 @@
 <script>
 export default {
     name: 'Nav',
-    model: {
-        prop: 'value',
-        event: 'change'
-    },
     props: {
-        value: Boolean
-    },
-    data() {
-        return {
-            isHide: false
-        }
-    },
-    methods: {
-        onSwitch() {
-            console.log(!this.vlaue)
-
-            this.$emit('change', !this.vlaue)
+        value: {
+            type: Boolean
         }
     }
 }
@@ -41,12 +28,16 @@ export default {
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 30px;
-	.switch-slide {
+	.switch-slide-icon {
 		font-size: 30px;
 		color: #92969c;
 		margin-left: 20px;
 		overflow: hidden;
-		transition: all 0.3s;
+	}
+	.user{
+		height: 100%;
+		display: flex;
+		align-items: center;
 	}
 }
 </style>

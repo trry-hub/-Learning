@@ -3,15 +3,15 @@
         <div class="nav">
             <Nav v-model="hideMenu" />
         </div>
-        {{ hideMenu }}
         <div class="content">
             <div class="container">
                 <router-view />
             </div>
-            <div class="menu">
+            <div class="menu" :style="`order:${hideMenu?-1:1}`">
                 <Menu />
             </div>
         </div>
+        <Drawer v-model="showOption" />
     </div>
 </template>
 
@@ -23,7 +23,8 @@ export default {
     components: { Menu, Nav },
     data() {
         return {
-            hideMenu: true
+            hideMenu: true,
+            showOption: true
         }
     }
 }
@@ -48,6 +49,7 @@ $nav-height: 60px;
 		flex: 1;
 		.container {
 			width: 100%;
+			padding: 20px;
 		}
 		.menu {
 			width: 300px;
@@ -60,6 +62,7 @@ $nav-height: 60px;
 			border-radius: 4px;
 			box-shadow: 0 4px 5px 1px rgba(234, 236, 240, 0.5);
 			order: -1;
+			transition: all 0.3s;
 			&::-webkit-scrollbar {
 				display: none;
 			}

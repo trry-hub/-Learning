@@ -1,5 +1,5 @@
 <template>
-    <el-drawer title="我是标题" :visible.sync="value" :direction="direction" :before-close="handleClose">
+    <el-drawer title="我是标题" :visible.sync="visible" :direction="direction" :before-close="handleClose">
         <span>我来啦!</span>
     </el-drawer>
 </template>
@@ -16,6 +16,9 @@ export default {
         value: {
             get() {
                 return this.value
+            },
+            set(newVal) {
+                this.visible = newVal
             }
         }
     }

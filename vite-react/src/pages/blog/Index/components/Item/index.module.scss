@@ -32,16 +32,13 @@
 			animation: waveFlow 1s infinite linear;
 		}
 	}
-	.synopsis{
+	.synopsis {
 		color: #999;
 		line-height: 30px;
 	}
 	.more {
 		color: #428bca;
 		cursor: pointer;
-		&:hover {
-			text-decoration: underline;
-		}
 	}
 }
 

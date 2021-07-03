@@ -53,7 +53,7 @@ const Info = () => {
 					<div className={infostyle['wrap-icon']}>
 						<img
 							className={infostyle['right-img']}
-							src={import.meta.globEager(`/src/assets/images/${imgName}.png`)}
+							src={import.meta.globEager(`/src/assets/images/${imgName}.png`).defalut}
 							alt={imgName}
 						/>
 					</div>

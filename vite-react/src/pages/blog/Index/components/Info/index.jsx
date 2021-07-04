@@ -1,29 +1,34 @@
-import infostyle from "./index.module.scss";
+import infostyle from './index.module.scss'
 
-import React, { useState, useEffect } from "react";
-import SvgIcon from "@/components/SvgIcon";
+import React, { useState, useEffect } from 'react'
+import SvgIcon from '@/components/SvgIcon'
 
 const Info = () => {
 	const list = [
 		{
-			type: "qq-icon",
-			child: ["2103438487", "1510133782", "848014514"],
+			type: 'qq-icon',
+			child: ['2103438487', '1510133782', '848014514']
 		},
 		{
-			type: "wechat",
-			child: ["Name-Terry"],
-		},
-	];
-	const [imgName, setImgName] = useState("2103438487");
+			type: 'wechat',
+			child: ['Name-Terry']
+		}
+	]
+	const [imgName, setImgName] = useState('2103438487')
 
 	useEffect(() => {
-		mouseEnter();
-	}, []);
+		mouseEnter()
+	}, [])
 
 	// 获取图片地址
 	const getSrc = (name) => {
-		const path = `/src/assets/images/${name}.png`
-		return new URL(path, import.meta.url).pathname
+		try {
+			const path = `/src/assets/images/${name}.png`
+			const modules = import.meta.globEager('/src/assets/images/*.png')
+			return modules[path].default
+		} catch (error) {
+			console.log(error);
+		}
 	}
 	const mouseEnter = (id = imgName) => {
 		setImgName(id)
@@ -70,6 +75,6 @@ const Info = () => {
 			</div>
 		</div>
 	)
-};
+}
 
-export default Info;
+export default Info

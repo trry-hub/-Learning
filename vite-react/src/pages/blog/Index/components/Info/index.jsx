@@ -20,6 +20,11 @@ const Info = () => {
 		mouseEnter();
 	}, []);
 
+	// 获取图片地址
+	const getSrc = (name) => {
+		const path = `/src/assets/images/${name}.png`
+		return new URL(path, import.meta.url).pathname
+	}
 	const mouseEnter = (id = imgName) => {
 		setImgName(id)
 	}
@@ -53,7 +58,7 @@ const Info = () => {
 					<div className={infostyle['wrap-icon']}>
 						<img
 							className={infostyle['right-img']}
-							src={import.meta.globEager(`/src/assets/images/${imgName}.png`).defalut}
+							src={getSrc(imgName)}
 							alt={imgName}
 						/>
 					</div>

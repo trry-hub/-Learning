@@ -1,8 +1,10 @@
 $num: 10;
 .bg {
 	transform: translate3d(0, 0, 0);
-	background: #348cb3 url("./assets/images/bg.jpg") bottom left;
+	background-color: #348cb3;
+	background-image:  url("./assets/images/bg.jpg");
 	background-repeat: repeat-x;
+	background-position: bottom left;
 	background-size: 1500px auto;
 	height: 100%;
 	opacity: 1;

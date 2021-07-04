@@ -41,6 +41,11 @@ export default defineConfig({
 				// 重写 less 变量，定制样式
 				modifyVars: themeVariables
 			}
+		},
+		cssPreprocessOptions: {
+			scss: {
+				additionalData: '@import "./src/assets/styles/variables.scss";' // 添加公共样式
+			}
 		}
 	},
 	server: {

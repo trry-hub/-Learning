@@ -3,8 +3,8 @@
         <div class="left">Echarts 示例</div>
         <div class="user">
             <el-avatar> user </el-avatar>
-            <i class="switch-slide-icon" :class="value?'el-icon-s-unfold':'el-icon-s-fold'" @click="$emit('input', !value)" />
-            <i class="switch-slide-icon el-icon-s-operation" />
+            <svg-icon class="switch-slide-icon" name="layout" :style="value?`transform: rotate3d(0, 1, 0, 180deg)`:``" @click="$emit('input', !value)" />
+            <i class="switch-slide-icon el-icon-edit-outline" @click="$emit('open-drawer', true)" />
         </div>
     </div>
 </template>
@@ -30,11 +30,18 @@ export default {
 	padding: 0 30px;
 	.switch-slide-icon {
 		font-size: 30px;
-		color: #92969c;
+		color: #ddd;
 		margin-left: 20px;
-		overflow: hidden;
+		transition: all 0.3s;
+		cursor: pointer;
+		&:hover {
+			color: #333;
+		}
 	}
-	.user{
+	.el-icon-edit-outline {
+		font-weight: 500;
+	}
+	.user {
 		height: 100%;
 		display: flex;
 		align-items: center;

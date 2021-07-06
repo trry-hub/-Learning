@@ -7,6 +7,7 @@
     "build": "vue-cli-service build",
     "build:test": "vue-cli-service build --mode test --dest dist-test",
     "build:dev": "vue-cli-service build --mode development --dest dist-dev",
+    "svgo": "svgo -f src/assets/icons",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -36,6 +37,8 @@
     "node-sass": "^4.12.0",
     "prettier": "^2.2.1",
     "sass-loader": "^8.0.2",
+    "svg-sprite-loader": "^5.0.0",
+    "svgo": "^1.3.0",
     "vue-template-compiler": "^2.6.11",
     "webpack-spritesmith": "^1.1.0"
   }

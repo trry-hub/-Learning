@@ -81,7 +81,7 @@ export default {
         }
     },
     mounted() {
-        this.onCreateChart()
+        // this.onCreateChart()
     },
     methods: {
         // 切换类型

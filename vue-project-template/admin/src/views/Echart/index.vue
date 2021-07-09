@@ -1,16 +1,21 @@
 <template>
     <div>
-        <Echarts />
+        123
+        <!-- <Echarts /> -->
+        <line-bar-chart />
     </div>
 </template>
 
 <script>
 export default {
-    name: '',
+    name: 'Echarts',
     data() {
         return {}
     },
-    mounted() { },
+    mounted() { 
+        console.log('echarts 加载了')
+		
+    },
     methods: {}
 }
 </script>

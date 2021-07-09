@@ -1,7 +1,13 @@
+const state = {}
+const mutations = {}
+const actions = {
+}
+const getters = {}
+
 export default {
-    state: () => ({}),
-    mutations: {},
-    actions: {},
-    gettersA: {},
-    namespaced: true // 开启命名空间
+    namespaced: true, // 开启命名空间
+    state,
+    mutations,
+    actions,
+    getters
 }

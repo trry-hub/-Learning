@@ -2,6 +2,7 @@ import infostyle from './index.module.scss'
 
 import React, { useState, useEffect } from 'react'
 import SvgIcon from '@/components/SvgIcon'
+import { getSrc } from '@/utils'
 
 const Info = () => {
 	const list = [
@@ -20,16 +21,6 @@ const Info = () => {
 		mouseEnter()
 	}, [])
 
-	// 获取图片地址
-	const getSrc = (name) => {
-		try {
-			const path = `/src/assets/images/${name}.png`
-			const modules = import.meta.globEager('/src/assets/images/*.png')
-			return modules[path].default
-		} catch (error) {
-			console.log(error);
-		}
-	}
 	const mouseEnter = (id = imgName) => {
 		setImgName(id)
 	}

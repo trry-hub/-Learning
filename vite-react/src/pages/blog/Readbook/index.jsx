@@ -10,28 +10,28 @@ const Readbook = () => {
 			path: "/",
 			status: "已读",
 			intro: "因为拥有了被讨厌的勇气，于是有了真正幸福的可能。",
-			cover: "http://blog.itmyhome.com//images/books/beitaoyandeyongqi.png",
+			cover: "http://blog.itmyhome.com/images/books/beitaoyandeyongqi.png",
 		},
 		{
 			title: "被讨厌的勇气",
 			path: "/",
 			status: "已读",
 			intro: "因为拥有了被讨厌的勇气，于是有了真正幸福的可能。",
-			cover: "http://blog.itmyhome.com//images/books/beitaoyandeyongqi.png",
+			cover: "http://blog.itmyhome.com/images/books/beitaoyandeyongqi.png",
 		},
 		{
 			title: "被讨厌的勇气",
 			path: "/",
 			status: "已读",
 			intro: "因为拥有了被讨厌的勇气，于是有了真正幸福的可能。",
-			cover: "http://blog.itmyhome.com//images/books/beitaoyandeyongqi.png",
+			cover: "http://blog.itmyhome.com/images/books/beitaoyandeyongqi.png",
 		},
 		{
 			title: "被讨厌的勇气",
 			path: "/",
 			status: "已读",
 			intro: "因为拥有了被讨厌的勇气，于是有了真正幸福的可能。",
-			cover: "http://blog.itmyhome.com//images/books/beitaoyandeyongqi.png",
+			cover: "http://blog.itmyhome.com/images/books/beitaoyandeyongqi.png",
 		},
 	];
 	const [bookList, setbookList] = useState([]);

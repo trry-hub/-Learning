@@ -14,7 +14,6 @@ modulesStore.keys().forEach(item => {
 })
 
 export default new Vuex.Store({
-    namespaced: true, // 开启命名空间
     strict: process.env.NODE_ENV !== 'production',
     modules
 })

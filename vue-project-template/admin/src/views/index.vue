@@ -1,26 +1,15 @@
 <template>
     <div class="home">
-        <img alt="Vue logo" src="../assets/logo.png">
-        <HelloWorld msg="Welcome to Your Vue.js App" />
-
         <dir id="dplayer" />
     </div>
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue'
 import DPlayer from 'dplayer'
 export default {
     name: 'Home',
-    components: {
-        HelloWorld
-    },
-    data() {
-        return {
-        }
-    },
     mounted() {
-        this.getData()
+        // this.getData()
         this.initDPlayer()
     },
     methods: {
@@ -59,12 +48,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-*{
-    margin: 0;
-    padding: 0
+* {
+	margin: 0;
+	padding: 0;
 }
 #dplayer {
-    width: 900px;
-    margin: 0 auto;
+	width: 900px;
+	margin: 0 auto;
 }
 </style>

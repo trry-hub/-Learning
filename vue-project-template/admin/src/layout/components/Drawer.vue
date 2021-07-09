@@ -1,7 +1,7 @@
 <template>
     <!-- :visible.sync="visibleStatus" -->
     <el-drawer v-bind="$attrs" title="我是标题" v-on="$listeners">
-        <span>我来啦!{{ $attrs }}</span>
+        <span>我来啦!</span>
     </el-drawer>
 </template>
 

@@ -15,6 +15,9 @@ Vue.prototype.axios = axios
 Vue.prototype.$get = api.get
 Vue.prototype.$post = api.post
 
+import { nanoid } from 'nanoid'
+Vue.prototype.$nanoid = nanoid
+
 // 全局组件自动注册
 import '@/components/autoRegister'
 // 自动加载 svg 图标

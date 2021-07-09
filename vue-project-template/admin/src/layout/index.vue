@@ -5,10 +5,16 @@
         </div>
         <div class="content">
             <div class="container">
-                <router-view />
+                <transition name="slide-fade">
+                    <router-view />
+                </transition>
             </div>
             <div class="menu" :style="`order:${hideMenu?-1:1}`">
-                <Menu />
+                <el-menu router :default-active="$route.path" class="el-menu-vertical" unique-opened>
+                    <template v-for="item in $store.getters['menu/GETROUTES']">
+                        <SideBarItem :key="item.path" :item="item" base-path="/" />
+                    </template>
+                </el-menu>
             </div>
         </div>
         <Drawer v-model="showOption" :visible.sync="showOption" :direction="hideMenu?'rtl':'ltr'" />
@@ -16,17 +22,20 @@
 </template>
 
 <script>
-import Menu from './components/Menu.vue'
+import SideBarItem from './components/SideBarItem.vue'
 import Nav from './components/Nav.vue'
 import Drawer from './components/Drawer.vue'
 export default {
     name: 'Layout',
-    components: { Menu, Nav, Drawer },
+    components: { SideBarItem, Nav, Drawer },
     data() {
         return {
             hideMenu: true,
             showOption: false
         }
+    },
+    mounted() {
+        console.log(this.$store.getters['menu/GETROUTES'])
     }
 }
 </script>
@@ -68,5 +77,26 @@ $nav-height: 60px;
 			}
 		}
 	}
+}
+::v-deep .el-menu {
+	border-right: none;
+} 
+/* 可以设置不同的进入和离开动画 */
+/* 设置持续时间和动画函数 */
+.slide-fade-enter-active {
+	transition: all 0.4s 0.45s ease;
+}
+.slide-fade-leave-active {
+	transition: all 0.4s ease;
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+	opacity: 0;
+}
+.slide-fade-enter {
+	transform: translateX(20px);
+}
+.slide-fade-leave-to {
+	transform: translateX(-20px);
 }
 </style>

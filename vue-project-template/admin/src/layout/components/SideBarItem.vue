@@ -3,19 +3,16 @@
         <template v-if="isChildKey(item,'children')">
             <el-submenu :index="item.path">
                 <template slot="title">
-                    <svg-icon class="icon" :name="item.meta.icon" />
+                    <svg-icon v-if="isChildKey(item.meta,'icon')" class="icon" :name="item.meta.icon" />
                     <span>{{ item.meta.title }}</span>
                 </template>
-                <el-menu-item v-for="itemChild in item.children" :key="itemChild.path" :index="item.path+'/'+itemChild.path">
-                    <template v-if="isChildKey(itemChild, 'meta')">
-                        <svg-icon class="icon" :name="itemChild.meta.icon" />
-                        <span>{{ itemChild.meta.title }}</span>
-                    </template>
-                </el-menu-item>
+                <template v-for="itemChild in item.children">
+                    <SideBarItem :key="itemChild.path" :item="itemChild" :base-path="item.path+'/'" />
+                </template>
             </el-submenu>
         </template>
-        <el-menu-item v-else-if="isChildKey(item,'meta')&&item.meta.sideBar" :index="item.path">
-            <svg-icon class="icon" :name="item.meta.icon" />
+        <el-menu-item v-else-if="isChildKey(item,'meta')&&item.meta.sideBar" :index="basePath+item.path">
+            <svg-icon v-if="isChildKey(item.meta,'icon')" class="icon" :name="item.meta.icon" />
             <span>{{ item.meta.title }}</span>
         </el-menu-item>
     </div>
@@ -31,22 +28,17 @@ export default {
         },
         basePath: {
             type: String,
-            default: '/'
+            default: ''
         }
-    },
-    mounted() {
-        console.log('mounted', this.item)
     },
     methods: {
         // 验证meta中是否包含某个字段
         isChildKey(data, key) {
-            console.log(data[key])
             try {
                 return !!data[key]
             } catch (error) {
                 return false
             }
-
         }
     }
 }

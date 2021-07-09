@@ -2,7 +2,7 @@
     <div>
         123
         <!-- <Echarts /> -->
-        <line-bar-chart />
+        <!-- <line-bar-chart /> -->
     </div>
 </template>
 

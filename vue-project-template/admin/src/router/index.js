@@ -6,7 +6,7 @@ import store from '@/store'
 Vue.use(VueRouter)
 const constantRoutes = [
     {
-        path: 'reload',
+        path: '/reload',
         name: 'reload',
         component: () => import('@/views/reload')
     },
@@ -72,7 +72,9 @@ router.beforeEach((to, from, next) => {
 
 // 全局后置钩子
 router.afterEach((to, from) => {
-    console.log(to, from)
+    to
+    from
+    // console.log(to, from)
 })
 
 // 处理后的可用路由存到menu中

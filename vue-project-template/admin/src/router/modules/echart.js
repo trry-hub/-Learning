@@ -1,9 +1,9 @@
 import Empty from '@/layout/Empty'
 export default [
     {
-        path: '',
-        redirect: '/echarts',
-        name: 'Echarts',
+        path: '/echarts',
+        redirect: '/echarts/index',
+        name: 'EchartsEmpty',
         component: Empty,
         meta: {
             title: 'echarts 示例',
@@ -12,9 +12,10 @@ export default [
         },
         children: [
             {
-                path: 'echarts',
+                path: 'index',
                 name: 'Echarts',
-                component: () => import('@/views/Echart'),
+                component: () =>
+                    import(/* webpackChunkName: "Echarts" */ '@/views/Echart'),
                 meta: {
                     title: 'echarts 示例',
                     sideBar: true
@@ -23,7 +24,8 @@ export default [
             {
                 path: 'line',
                 name: 'Line',
-                component: () => import('@/views/Echart/Line'),
+                component: () =>
+                    import(/* webpackChunkName: "Echarts" */ '@/views/Echart/Line'),
                 meta: {
                     sideBar: true,
                     title: '折线图'

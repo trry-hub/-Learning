@@ -12,7 +12,6 @@ const mutations = {
                 return false
             }
         })
-        console.log(state.routes)
     }
 }
 const actions = {}

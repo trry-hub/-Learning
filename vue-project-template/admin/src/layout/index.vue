@@ -12,7 +12,7 @@
             <div class="menu" :style="`order:${hideMenu?-1:1}`">
                 <el-menu router :default-active="$route.path" class="el-menu-vertical" unique-opened>
                     <template v-for="item in $store.getters['menu/GETROUTES']">
-                        <SideBarItem :key="item.path" :item="item" base-path="/" />
+                        <SideBarItem :key="item.path" :item="item" />
                     </template>
                 </el-menu>
             </div>

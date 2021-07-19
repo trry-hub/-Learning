@@ -1,6 +1,6 @@
 <template>
     <div class="line-chart">
-        <line-bar-chart class="chart" :options="lineChart" />
+        <line-bar-chart ref="chart" class="chart" :options="lineChart" />
     </div>
 </template>
 
@@ -73,17 +73,9 @@ export default {
             }
         }
     },
-    computed: {
-
-    },
-    watch: {
-
-    },
-    created() {
-
-    },
     mounted() {
-
+        console.log(this.$refs.chart)
+		
     },
     methods: {
 

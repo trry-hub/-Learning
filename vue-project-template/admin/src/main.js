@@ -18,8 +18,14 @@ Vue.prototype.$post = api.post
 import { nanoid } from 'nanoid'
 Vue.prototype.$nanoid = nanoid
 
+// import '/handlebars/index'
+
 // 全局组件自动注册
-import '@/components/autoRegister'
+import '@/components/base/baseAutoRegister'
+import '@/components/gallery'
+// 全局组件自动注册
+import '@/components/common/autoRegister'
+
 // 自动加载 svg 图标
 const req = require.context('./assets/icons', false, /\.svg$/)
 const requireAll = requireContext => requireContext.keys().map(requireContext)

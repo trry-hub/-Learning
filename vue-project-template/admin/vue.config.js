@@ -108,6 +108,7 @@ module.exports = {
 					resources: [
 						'./src/assets/styles/resources/*.scss',
 						// './src/assets/sprites/*.scss',
+						'./src/assets/styles/_variables.scss'
 					],
 				})
 				.end()

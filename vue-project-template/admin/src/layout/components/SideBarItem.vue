@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="menu-item-wrap">
         <template v-if="isChildKey(item,'children')">
             <el-submenu :index="item.path">
                 <template slot="title">
@@ -46,6 +46,11 @@ export default {
 
 <style lang="scss" scoped>
 //scss
+.menu-item-wrap {
+	.el-menu-item {
+		width: 300px;
+	}
+}
 ::v-deep .el-menu-item,
 ::v-deep .el-menu-item span,
 ::v-deep .el-submenu__title,
@@ -54,9 +59,6 @@ export default {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-}
-.el-menu-vertical {
-	border: none;
 }
 .icon {
 	font-size: 18px;

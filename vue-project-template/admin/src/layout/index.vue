@@ -10,7 +10,7 @@
                 </transition>
             </div>
             <div class="menu" :style="`order:${hideMenu?-1:1}`">
-                <el-menu router :default-active="$route.path" class="el-menu-vertical" unique-opened>
+                <el-menu :collapse="isCollapse" router :default-active="$route.path" class="el-menu-vertical" unique-opened>
                     <template v-for="item in $store.getters['menu/GETROUTES']">
                         <SideBarItem :key="item.path" :item="item" />
                     </template>
@@ -25,33 +25,31 @@
 import SideBarItem from './components/SideBarItem.vue'
 import Nav from './components/Nav.vue'
 import Drawer from './components/Drawer.vue'
+
 export default {
     name: 'Layout',
     components: { SideBarItem, Nav, Drawer },
     data() {
         return {
             hideMenu: true,
-            showOption: false
+            showOption: false,
+            isCollapse: false
         }
-    },
-    mounted() {
-        console.log(this.$store.getters['menu/GETROUTES'])
     }
 }
 </script>
 
 <style lang="scss" scoped>
 //scss
-$nav-height: 60px;
 .layout-wrap {
 	display: flex;
 	flex-direction: column;
 	.nav {
-		height: $nav-height;
+		height: $layout-header-height;
 		box-shadow: 2px 2px 4px 0px rgba(234, 236, 240, 0.5);
 		position: sticky;
 		top: 0;
-		z-index: 10;
+		z-index: 1001;
 		background-color: #fff;
 	}
 	.content {
@@ -60,13 +58,13 @@ $nav-height: 60px;
 		.container {
 			width: 100%;
 			padding: 20px;
+			box-sizing: border-box;
 		}
 		.menu {
-			width: 300px;
-			height: calc(100vh - #{$nav-height});
+			height: calc(100vh - #{$layout-header-height});
 			flex-shrink: 0;
 			position: sticky;
-			top: $nav-height;
+			top: $layout-header-height;
 			overflow-y: scroll;
 			overflow-x: hidden;
 			box-shadow: 0 4px 5px 1px rgba(234, 236, 240, 0.5);

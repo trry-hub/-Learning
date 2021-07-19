@@ -1,6 +1,7 @@
 <template>
     <div class="home">
         <dir id="dplayer" />
+        <!-- <demo ref="demo" /> -->
     </div>
 </template>
 
@@ -11,6 +12,9 @@ export default {
     mounted() {
         // this.getData()
         this.initDPlayer()
+
+        console.log(this.$refs['demo'].$el.outHTML)
+		
     },
     methods: {
         initDPlayer() {

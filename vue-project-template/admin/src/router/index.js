@@ -23,6 +23,7 @@ const constantRoutes = [
 ]
 
 import echart from './modules/echart'
+import drag from './modules/drag'
 const routes = [
     {
         path: '/',
@@ -39,7 +40,8 @@ const routes = [
                     icon: 'index'
                 }
             },
-            ...echart
+            ...echart,
+            ...drag
         ]
     },
     {

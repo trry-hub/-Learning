@@ -266,6 +266,23 @@ export const pathToName = filtPath => {
 
 /**
  * 格式化模板文件
- * 
+ *
  */
-export const tempBeautify = () => { }
+export const tempBeautify = tempHTML => {
+    const beautify_html = require('js-beautify').html
+	
+    return beautify_html(tempHTML)
+}
+
+/** 
+* json对象转字符串形式 
+*/ 
+export const json2str = o => { 
+    const arr = [] 
+    const fmt = function(s) { 
+        if (typeof s == 'object' && s != null) return json2str(s) 
+        return /^(string|number)$/.test(typeof s) ? `'${  s  }'` : s 
+    } 
+    for (const i in o) arr.push(`${  i  }:${  fmt(o[i])}`) 
+    return `{${  arr.join(',')  }}` 
+} 

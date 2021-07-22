@@ -67,6 +67,6 @@ export default {
 }
 .el-menu-item.is-active,
 .el-submenu .el-menu--inline .el-menu-item.is-active {
-	background-color: rgba(65, 184, 131, 0.2);
+	background-color: rgba(84,112,198, 0.2);
 }
 </style>

@@ -4,20 +4,29 @@ const state = {
         {
             name: '输入框',
             componentName: 'el-input',
-            propsToData: {
+            props: {},
+            bindDataTotag: {
+                'v-model': 'value',
                 placeholder: '请输入内容',
-                'v-model': 'value'
+                ':clearable': true
+            },
+            bindMethodsTotag: {
+                '@keyup.enter.native': 'onClick'
             },
             data: {
                 value: ''
             },
-            methods: {},
+            methods: {
+                onClick() {
+                    this.$message(this.value)
+                }
+            },
             computed: {}
         },
         {
             name: '折线图',
             componentName: 'line-bar-chart',
-            propsToData: {
+            bindDataTotag: {
                 options: {
                     title: {
                         text: '折线图堆叠'
@@ -87,6 +96,55 @@ const state = {
             },
             methods: {},
             computed: {}
+        },
+        {
+            name: '柱状图',
+            componentName: 'line-bar-chart',
+            bindDataTotag: {
+                options: {
+                    title: {
+                        text: '柱状图'
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis: [
+                        {
+                            type: 'category',
+                            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                            axisTick: {
+                                alignWithLabel: true
+                            }
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value'
+                        }
+                    ],
+                    series: [
+                        {
+                            name: '直接访问',
+                            type: 'bar',
+                            barWidth: '60%',
+                            data: [10, 52, 200, 334, 390, 330, 220]
+                        }
+                    ]
+                },
+                style: {
+                    width: '100%',
+                    height: '500px'
+                }
+            }
         },
         {
             name: '按钮',

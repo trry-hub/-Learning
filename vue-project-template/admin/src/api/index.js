@@ -31,7 +31,7 @@ api.interceptors.request.use(
         store.commit['user/token'] = '这个是token'
         config.headers.common['token'] = store.user?.token || ''
         if (config.method === 'get') {
-            qs
+            config.params = qs.stringify(config.data)
         }
         return config
     },

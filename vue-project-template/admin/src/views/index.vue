@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <dir id="dplayer" />
-        <!-- <demo ref="demo" /> -->
+        <demo ref="demo" />
     </div>
 </template>
 

@@ -17,19 +17,23 @@
                 </el-form>
                 <svg-icon class="screne-icon" :name="isPageFullScrene?'piece-shrink':'piece-enlarge'" @click="onEnlarge" />
             </div>
-            <component :is="name" />
             <div class="piece">
                 <section class="left">
                     <base-temp />
                 </section>
                 <section class="content">
-                    <page-content />
+                    <page-content ref="page-content" />
                 </section>
                 <section class="right">
                     <configer />
                 </section>
             </div>
         </main>
+        <el-dialog title="Code" :visible.sync="visible">
+            <code-mirror v-if="visible" :value="code" />
+            <el-button @click="onSubmit">提交</el-button>
+            <el-button @click="onBuild">打包项目</el-button>
+        </el-dialog>
     </div>
 </template>
 
@@ -40,7 +44,8 @@ export default {
     data() {
         return {
             isPageFullScrene: false,
-            name: ''
+            visible: false,
+            code: ''
         }
     },
     computed: {
@@ -60,12 +65,35 @@ export default {
         },
         // 预览代码
         onCode() {
-            const tem = new VueTemplate().baseTempalte()
-            this.code = tem
+            try {
+                const tem = new VueTemplate(this.$refs['page-content'].getList()[1])
+                this.code = tem.initTempalte()
+
+                this.visible = true
+            } catch (error) {
+                console.log(error)
+            }
         },
         // 预览效果
         onPreview() {
             console.log('onPreview')
+        },
+        // 提交代码
+        onSubmit() {
+            const params = { code: this.code }
+            this.$post('/api/createfile', params).then(res => {
+                this.$message({
+                    message: res.msg,
+                    type: 'success'
+                })
+            })
+        },
+        // 打包项目
+        onBuild() {
+            this.$get('/api/createfile/project').then(res => {
+                console.log(res)
+
+            })
         },
         // 放大
         onEnlarge() {
@@ -84,7 +112,8 @@ export default {
 }
 .drag {
 	flex: 1;
-	overflow-y: scroll;
+	display: flex;
+	flex-direction: column;
 	.header {
 		display: flex;
 		justify-content: space-between;
@@ -102,22 +131,23 @@ export default {
 			}
 		}
 		.button-icon {
-			// color: #333;
 			margin-right: 5px;
 		}
 	}
 	.piece {
 		display: grid;
 		grid-template-columns: 300px 1fr 300px;
-		border: 1px solid #ff6700;
+		flex: 1;
 		.left {
-			box-shadow: 0 4px 5px 1px rgba(234, 236, 240, 50%);
+			padding: 5px;
+			border: 1px solid #ddd;
 		}
 		.content {
 			background-color: #f5f5f5;
 		}
 		.right {
-			box-shadow: 0 4px 5px 1px rgba(234, 236, 240, 50%);
+			padding: 5px;
+			border: 1px solid #ddd;
 		}
 	}
 }
@@ -135,6 +165,7 @@ export default {
 	overflow-y: scroll;
 	.drag {
 		height: auto;
+		overflow-y: scroll;
 		.header {
 			padding: 20px;
 			padding-bottom: 5px;

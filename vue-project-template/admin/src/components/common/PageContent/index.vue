@@ -2,10 +2,9 @@
     <div class="page-content">
         <keep-alive>
             <draggable v-model="list" group="people" :animation="0" :disabled="false" fallback-on-body @start="drag=true" @end="drag=false">
-                <component :is="item.componentName" v-for="(item,index) in list" :key="item.id+index" class="component-wrapper" :class="id === item.id?'active':''" v-bind="item.propsToData">
-                    {{ item.name }}{{ item.id }}
+                <component :is="item.componentName" v-for="(item,index) in list" :key="item.id+index" class="draggable-item component-wrapper" :class="id === item.id?'active':''" v-bind="item.bindDataTotag" v-on="item.bindToMethodss">
+                    {{ item.name }}
                 </component>
-            <!-- <div v-for="element in list" :key="element.id">{{ element.name }}</div> -->
             </draggable>
         </keep-alive>
     </div>
@@ -20,16 +19,15 @@ export default {
             list: [
                 {
                     name: 'container',
-                    componentName: 'div',
-                    children: <PageContent/>,
-                    propsToData: {
+                    componentName: 'el-input',
+                    dataTotag: {
                         placeholder: '请输入内容',
                         'v-model': 'value',
                         style: {
                             width: '100%',
-                            // minHeight: '100vh',
+                            height: '100%',
                             padding: '20px',
-                            backgroundColor: '#ff6700'
+                            'background-color': '#fff'
                         }
                     },
                     data: {
@@ -41,20 +39,13 @@ export default {
             ]
         }
     },
-    watch: {
-        // 'layoutComponent': {
-        //     handler(newVal, oldVal) {
-        //         console.log(newVal, oldVal)
-
-        //     },
-        //     deep: true
-        // }
-    },
     mounted() {
-		
+
     },
     methods: {
-
+        getList() {
+            return this.list
+        }
     }
 }
 </script>
@@ -62,13 +53,20 @@ export default {
 <style scoped lang="scss">
 // scss
 .page-content {
+	height: 100%;
 	padding: 10px;
 	box-sizing: border-box;
-	.component-wrapper{
+	.component-wrapper {
 		display: inline-block;
-		&active{
+		border: 1px solid transparent;
+		&active {
 			border: 1px solid $theme-color;
 		}
+	}
+
+	::v-deep .draggable-item:active {
+		border: 1px solid $theme-color;
+		cursor: move;
 	}
 }
 </style>

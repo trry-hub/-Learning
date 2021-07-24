@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "nodemon --experimental-modules ./src/app.mjs",
+	"dev": "zx start.mjs",
     "lint": "./node_modules/.bin/eslint ./src"
   },
   "dependencies": {

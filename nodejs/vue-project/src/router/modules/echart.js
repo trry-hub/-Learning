@@ -25,7 +25,9 @@ export default [
                 path: 'line',
                 name: 'Line',
                 component: () =>
-                    import(/* webpackChunkName: "Echarts" */ '@/views/echart/Line'),
+                    import(
+                        /* webpackChunkName: "Echarts" */ '@/views/echart/Line'
+                    ),
                 meta: {
                     sideBar: true,
                     title: '折线图'

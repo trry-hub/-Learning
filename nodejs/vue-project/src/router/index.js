@@ -22,22 +22,18 @@ const constantRoutes = [
     }
 ]
 
-const pageRoutes = []
 // 自动注册路由- page目录下的一级vue文件
-require
-    .context('@/page', true, /\.vue$/)
-    .keys()
-    .forEach(fileName => {
-        const componentName = fileName.replace(/^\.\//, '').replace(/\.vue$/, '')
-        const temp = {
-            path: `/${componentName}`,
-            component: resolve => require([`@/page/${componentName}`], resolve)
-        }
-        pageRoutes.push(temp)
-    })
+const pageRoutes = []
+require.context('@/page', true, /\.vue$/).keys().forEach(fileName => {
+    const componentName = fileName.replace(/^\.\//, '').replace(/\.vue$/, '')
+    const temp = {
+        path: `/${componentName}`,
+        component: resolve => require([`@/page/${componentName}`], resolve)
+    }
+    pageRoutes.push(temp)
+})
 
-console.log('pageRoutes', pageRoutes)
-
+// 手动导入menu路由
 import echart from './modules/echart'
 import drag from './modules/drag'
 let routes = [
@@ -56,10 +52,10 @@ let routes = [
                     icon: 'index'
                 }
             },
-            ...echart
+            ...echart,
+            ...drag
         ]
     },
-    ...drag,
     {
         path: '/about',
         name: 'About',
@@ -72,12 +68,7 @@ let routes = [
     ...constantRoutes
 ]
 
-routes =
-  process.env.NODE_ENV === 'buildpage'
-      ? [...pageRoutes]
-      : [...routes, ...pageRoutes]
-
-console.log(process.env.NODE_ENV)
+routes = process.env.NODE_ENV === 'buildpage' ? [...pageRoutes] : [...routes, ...pageRoutes]
 
 const router = new VueRouter({
     routes,
@@ -90,17 +81,16 @@ const router = new VueRouter({
     }
 })
 
-// 全局前置守卫
-router.beforeEach((to, from, next) => {
-    next()
-})
+// // 全局前置守卫
+// router.beforeEach((to, from, next) => {
+//     next()
+// })
 
-// 全局后置钩子
-router.afterEach((to, from) => {
-    to
-    from
-    // console.log(to, from)
-})
+// // 全局后置钩子
+// router.afterEach((to, from) => {
+//     to
+//     from
+// })
 
 // 处理后的可用路由存到menu中
 store.commit('menu/SETROUTES', router.options.routes)

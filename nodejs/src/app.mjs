@@ -39,7 +39,7 @@ app.use(function (err, req, res, next) {
   res.render('error')
 })
 
-const port = 3001
+const port = 3000
 app.listen(port, () => {
   console.log('服务器启动成功，端口：' + port)
 })

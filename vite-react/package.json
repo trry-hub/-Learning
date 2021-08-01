@@ -8,6 +8,7 @@
 		"new": "plop"
 	},
 	"dependencies": {
+		"animejs": "^3.2.1",
 		"antd": "^4.16.6",
 		"for-editor": "^0.3.5",
 		"nanoid": "^3.1.23",

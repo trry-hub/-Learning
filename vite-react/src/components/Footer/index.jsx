@@ -12,12 +12,8 @@ const Footer = (props) => {
 		var target = document.body
 		// 创建观察者对象
 		var observer = new MutationObserver(function (mutations) {
-			console.log(mutations)
-			
-			
 			if (initHeight != document.body.clientHeight) {
 				initHeight = document.body.clientHeight
-				console.log(initHeight)
 			}
 		})
 		// 配置观察选项:

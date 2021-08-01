@@ -1,7 +1,6 @@
 {
   "name": "todo-nodejs-api",
   "version": "1.0.0",
-  "description": "NodeJS全栈开发之RESTFUL API基于Node.js+Express+Mysql实现后端接口",
   "author": "",
   "main": "index.js",
   "dependencies": {
@@ -22,14 +21,5 @@
     "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jackchen0120/todo-nodejs-api.git"
-  },
-  "keywords": [],
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jackchen0120/todo-nodejs-api/issues"
-  },
-  "homepage": "https://github.com/jackchen0120/todo-nodejs-api#readme"
+  "license": "ISC"
 }

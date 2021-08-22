@@ -11,79 +11,77 @@ import logo from "@/assets/images/logo.gif";
 
 
 const Nav = (props) => {
-    // 初始化 satae
-    const [navHeight, setNavHeight] = useState(0);
-    const myRef = useRef(null);
-    const [list] = useState(navList);
-    const [visible, setVisible] = useState(false)
+  // 初始化 satae
+  const [navHeight, setNavHeight] = useState(0);
+  const myRef = useRef(null);
+  const loginRef = useRef(null)
+  const [list] = useState(navList);
+  const [modalVisible, setModalVisible] = useState(false)
 
-    // 登录
-    const onLogin = () => {
-        setVisible(true)
-    }
-    const handleOk = () => {
-        setVisible(false)
-    }
-    const handleCancel = () => {
-        setVisible(false)
-    }
+  // 登录
+  const onLogin = () => {
+    setModalVisible(true)
+  }
+  const handleOk = () => {
+    console.log(loginRef.current);
 
-    useEffect(() => {
-        setNavHeight(myRef.current.offsetHeight)
-    }, []);
+    loginRef.current.onFinish()
+    setModalVisible(false)
+  }
+  const handleCancel = () => {
+    console.log(123);
+    
+    setModalVisible(false)
+  }
 
-    const { scrollTop, history } = props;
-    return (
-        <>
-            <div className={nav["nav-wrapper"]} style={{ height: `${navHeight}px` }}>
-                <div
-                    className={`${nav["nav-wrap"]} ${scrollTop > 0 ? nav["shadow"] : ""}`}
-                    ref={myRef}
+  useEffect(() => {
+    setNavHeight(myRef.current.offsetHeight)
+  }, [])
+
+  const { scrollTop, history } = props;
+  return (
+    <React.Fragment>
+      <div className={nav["nav-wrapper"]} style={{ height: `${navHeight}px` }}>
+        <div className={`${nav["nav-wrap"]} ${scrollTop > 0 ? nav["shadow"] : ""}`} ref={myRef} >
+          <div className={nav["left-grid"]}>
+            <img
+              className={`${nav["logo"]}`}
+              src={logo}
+              alt="trry"
+              onClick={() => history.push("/")}
+            />
+            {list.map((item, index) => {
+              return item.path.indexOf("http") === -1 ? (
+                <NavLink
+                  to={{ pathname: item.pathname }}
+                  className={`${nav["btn"]}`}
+                  key={index}
                 >
-                    <div className={nav["left-grid"]}>
-                        <img
-                            className={`${nav["logo"]}`}
-                            src={logo}
-                            alt="trry"
-                            onClick={() => history.push("/")}
-                        />
-                        {list.map((item, index) => {
-                            return item.path.indexOf("http") === -1 ? (
-                                <NavLink
-                                    to={{ pathname: item.pathname }}
-                                    className={`${nav["btn"]}`}
-                                    key={index}
-                                >
-                                    {item.meta?.title}
-                                </NavLink>
-                            ) : (
-                                <a
-                                    className={`${nav["btn"]}`}
-                                    target="_blank"
-                                    href={item.path}
-                                    rel="noreferrer noreferrer"
-                                    key={index}
-                                >
-                                    {item.meta?.title}
-                                </a>
-                            );
-                        })}
-                    </div>
-                    <div className={nav["right-grid"]}>
-                        <Button type="dashed" onClick={onLogin}>root</Button>
-                    </div>
-                </div>
-            </div>
-            <Modal
-                title="Title"
-                visible={visible}
-                onOk={handleOk}
-                onCancel={handleCancel}
-            >
-                <p>123</p>
-            </Modal>
-        </>
-    );
+                  {item.meta?.title}
+                </NavLink>
+              ) : (
+                <a
+                  className={`${nav["btn"]}`}
+                  target="_blank"
+                  href={item.path}
+                  rel="noreferrer noreferrer"
+                  key={index}
+                >
+                  {item.meta?.title}
+                </a>
+              );
+            })}
+          </div>
+          <div className={nav["right-grid"]}>
+            <Button type="dashed" onClick={onLogin}>管理{'' + modalVisible}</Button>
+          </div>
+        </div>
+        <Modal visible={modalVisible} onOk={handleOk} onCancel={handleCancel}>
+          <Login ref={loginRef}/>
+        </Modal>
+      </div>
+    </React.Fragment>
+  );
 };
 
 export default withRouter(Nav);

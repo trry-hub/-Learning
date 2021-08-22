@@ -1,16 +1,20 @@
 import axios from 'axios'
 import qs from 'qs'
 // import router from '@/router/index'
-import store from '@/redux/store/index'
-import { Message } from 'antd'
+import store from '@/redux/store'
+import { message } from 'antd'
 
 
+const MODE = import.meta.env // 环境变量
 const api = axios.create({
-    baseURL: process.env.VUE_APP_API_ROOT,
+    baseURL: MODE.VITE_APP_API_ROOT,
     timeout: 10000,
     responseType: 'json'
     // withCredentials: true
 })
+
+console.log(MODE);
+
 
 // 设置全局的请求次数，请求的间隙
 // api.defaults.retry = 4
@@ -18,28 +22,28 @@ const api = axios.create({
 
 api.interceptors.request.use(
     request => {
-        request.retry = 4
+        request.retry = 1
         request.retryDelay = 1000
 
         if (request.method === 'post') {
-            if (request.data instanceof FormData) {
-                if (store.getters['token/isLogin']) {
-                    // 如果是 FormData 类型（上传图片）
-                    request.data.append(
-                        'token',
-                        store.state.token.info.token
-                    )
-                }
-            } else {
-                // 带上 token
-                if (request.data === undefined) {
-                    request.data = {}
-                }
-                if (store.getters['token/isLogin']) {
-                    request.data.token = store.state.token.info.token
-                }
-                request.data = qs.stringify(request.data)
-            }
+            // if (request.data instanceof FormData) {
+            //     if (store.getters['token/isLogin']) {
+            //         // 如果是 FormData 类型（上传图片）
+            //         request.data.append(
+            //             'token',
+            //             store.state.token.info.token
+            //         )
+            //     }
+            // } else {
+            //     // 带上 token
+            //     if (request.data === undefined) {
+            //         request.data = {}
+            //     }
+            //     if (store.getters['token/isLogin']) {
+            //         request.data.token = store.state.token.info.token
+            //     }
+            //     request.data = qs.stringify(request.data)
+            // }
         } else {
             // 带上 token
             if (request.params === undefined) {
@@ -60,20 +64,24 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
     response => {
-        if (response.data.error !== '') {
-            // 如果接口请求时发现 token 失效，则立马跳转到登录页
-            if (response.data.status === 0) {
-                // toLogin()
-                store.dispatch('token/logout')
-                return false
-            }
-            if (store.state.settings.mode === 'pc') {
-                Message({
-                    type: 'error',
-                    message: response.data.error
-                })
-            }
-            return Promise.reject(response.data)
+        // if (response.data.error !== '') {
+        //     // 如果接口请求时发现 token 失效，则立马跳转到登录页
+        //     if (response.data.status === 0) {
+        //         // toLogin()
+        //         store.dispatch('token/logout')
+        //         return false
+        //     }
+        //     if (store.state.settings.mode === 'pc') {
+        //         message({
+        //             type: 'error',
+        //             message: response.data.error
+        //         })
+        //     }
+        //     return Promise.reject(response.data)
+        // }
+
+        if(response.code === 0) {
+          message.error(response.msg)
         }
         return Promise.resolve(response.data)
     },

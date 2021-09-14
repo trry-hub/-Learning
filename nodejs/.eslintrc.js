@@ -46,7 +46,7 @@ module.exports = {
 		indent: [
 			// 强制使用一致的缩进
 			2,
-			4,
+			2,
 			{
 				SwitchCase: 1,
 			},

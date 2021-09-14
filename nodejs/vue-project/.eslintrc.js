@@ -46,7 +46,7 @@ module.exports = {
 		indent: [
 			// 强制使用一致的缩进
 			2,
-			4,
+			2,
 			{
 				SwitchCase: 1,
 			},
@@ -141,7 +141,7 @@ module.exports = {
 		],
 		"prefer-template": 2,
 		// Vue - https://github.com/vuejs/eslint-plugin-vue
-		"vue/html-indent": [2, 4],
+		"vue/html-indent": [2, 2],
 		"vue/max-attributes-per-line": 0,
 		"vue/require-default-prop": 0,
 		"vue/singleline-html-element-content-newline": 0,
@@ -150,7 +150,7 @@ module.exports = {
 		"vue/this-in-template": 2,
 		"vue/script-indent": [
 			2,
-			4,
+			2,
 			{
 				switchCase: 1,
 			},

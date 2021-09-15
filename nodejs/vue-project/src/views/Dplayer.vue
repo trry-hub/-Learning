@@ -29,7 +29,7 @@ export default {
         lang: 'en', // 语言，可选'en', 'zh-cn', 'zh-tw',
         container: document.getElementById('dplayer'),
         video: {
-          url: 'https://play.yaomaitong.net/qxs-live/3434f1cab37aa0225b4f760b5e823326_NLD540.m3u8', // 示例地址
+          url: 'rtmp://tmall.alicdn.com/tmall/d4ed5944-7afb-4e6f-bda5-84c4761e7626?wm=1&wml=2', // 示例地址
           type: 'customHls',
           customType: {
             customHls: function(video) {

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    <%= title %>
+  </title>
+  <style>
+    #app {
+      height: 100%;
+    }
+    .loading-wrapper {
+      width: 200px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      display: table;
+      height: auto;
+      color: #437df4;
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 36px;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-shadow: -1px -1px 1px #111, 2px 2px 1px #363636;
+    }
+    .loading-wrapper p {
+      margin: 0;
+    }
+    .loading-wrapper p::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(120deg, transparent 20%, transparent 6rem, white 11rem, transparent 11.15rem, transparent 30rem, rgba(255, 255, 255, 0.3) 20rem, transparent 25rem, transparent 27rem, rgba(255, 255, 255, 0.6) 32rem, white 33rem, rgba(255, 255, 255, 0.3) 33.15rem, transparent 38rem, transparent 40rem, rgba(255, 255, 255, 0.3) 45rem, transparent 50rem, transparent 100%);
+      background-size: 150% 100%;
+      background-repeat: no-repeat;
+      animation: move 2s infinite linear;
+    }
+    @keyframes move {
+      0% {
+        background-position: 140% 0;
+      }
+      100% {
+        background-position: -400% 0;
+      }
+    }
+    .loading-ball {
+      width: 100%;
+      text-align: center;
+    }
+    .loading-item {
+      display: inline-block;
+      vertical-align: middle;
+      width: 10px;
+      height: 10px;
+      background: #3ecafa;
+      border: 1px solid #111;
+      border-radius: 50%;
+      -webkit-animation: loading 1s infinite alternate;
+      animation: loading 1s infinite alternate;
+    }
+    .loading-item:nth-of-type(2) {
+      background: #40bffa;
+      animation-delay: 0.2s;
+    }
+    .loading-item:nth-of-type(3) {
+      background: #41b8f9;
+      animation-delay: 0.4s;
+    }
+    .loading-item:nth-of-type(4) {
+      background: #42acf8;
+      animation-delay: 0.6s;
+    }
+    .loading-item:nth-of-type(5) {
+      background: #419ef5;
+      animation-delay: 0.8s;
+    }
+    .loading-item:nth-of-type(6) {
+      background: #3f8ff3;
+      animation-delay: 1s;
+    }
+    .loading-item:nth-of-type(7) {
+      background: #437df4;
+      animation-delay: 1.2s;
+    }
+    @keyframes loading {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="loading-wrapper">
+      <p><%= title %></p>
+      <div class="loading-ball">
+        <span class="loading-item"></span>
+        <span class="loading-item"></span>
+        <span class="loading-item"></span>
+        <span class="loading-item"></span>
+        <span class="loading-item"></span>
+        <span class="loading-item"></span>
+        <span class="loading-item"></span>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+  <% if (debugTool=='eruda' ) { %>
+    <script src="//cdn.jsdelivr.net/npm/eruda/eruda.min.js"></script>
+    <script>eruda.init();</script>
+    <% } %>
+      <% if (debugTool=='vconsole' ) { %>
+        <script src="//cdn.jsdelivr.net/npm/vconsole/dist/vconsole.min.js"></script>
+        <script>new VConsole();</script>
+        <% } %>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+// $--colors: ("primary": (
+//     "base": #3d61e3)
+//     // "success": (
+//     //   "base": #21ba45,
+//     // ),
+//     // "warning": (
+//     //   "base": #f2711c,
+//     // ),
+//     // "danger": (
+//     //   "base": #db2828,
+//     // ),
+//     // "error": (
+//     //   "base": #db2828,
+//     // ),
+//     // "info": (
+//     //   "base": #42b8dd,
+//     // ),
+// );
+
+// // You should use them in scss, because we calculate it by sass.
+// // comment next lines to use default color
+// @forward "element-plus/theme-chalk/src/common/var.scss"with ($colors: $--colors,
+//     // $button-padding-horizontal: ("default": 50px)
+// );
+
+// 全局引入
+@forward "element-plus/theme-chalk/src/common/var.scss"with ($colors: ("primary": (
+    "base": #3d61e3,
+)),
+$font-path:('element-plus/theme-chalk/fonts'));
+@use 'element-plus/theme-chalk/src/index.scss'

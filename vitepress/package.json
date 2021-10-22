@@ -1,0 +1,14 @@
+{
+  "name": "vitepress",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build":"vitepress build docs",
+    "docs:commit": "yarn docs:build && scripts/deploy-gh.sh"
+  },
+  "devDependencies": {
+    "vitepress": "^0.20.0"
+  }
+}

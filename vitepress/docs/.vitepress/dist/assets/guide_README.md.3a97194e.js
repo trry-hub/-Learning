@@ -1,1 +1,0 @@
-import{_ as t,c as e,o as a}from"./app.764ee8f8.js";const f='{"title":"","description":"","frontmatter":{},"relativePath":"config.md","lastUpdated":1634882967269}',o={};function r(c,s,n,p,_,i){return a(),e("div")}var l=t(o,[["render",r]]);export{f as __pageData,l as default};

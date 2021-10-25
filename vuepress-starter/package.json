@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-      "dev": "vuepress dev docs",
-      "build":"vuepress build docs",
-      "commit": "yarn docs:build && scripts/deploy-gh.sh"
+    "dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "commit": "yarn docs:build && scripts/deploy-gh.sh"
   },
   "devDependencies": {
     "vuepress": "^1.8.2"

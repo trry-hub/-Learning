@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "commit": "GH=1 yarn docs:build && bash scripts/deploy.sh"
+    "commit": "GH=1 rm -rf docs/.vitepress/dist yarn docs:build && bash scripts/deploy.sh"
   },
   "devDependencies": {
     "vitepress": "^0.20.0"

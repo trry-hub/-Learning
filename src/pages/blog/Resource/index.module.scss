@@ -1,0 +1,23 @@
+.resource-wrap {
+	// resource-wrap
+	max-width: 800px;
+	.item {
+		margin-bottom: 15px;
+		padding: 10px 15px;
+		border: 1px solid #e3e3e3;
+		border-radius: 4px;
+		&:nth-last-child(1) {
+			margin-bottom: 0;
+		}
+		h5 {
+			color: #ee4444;
+		}
+		.article-item {
+			margin: 5px;
+			.author {
+				margin-left: 15px;
+				font-style: italic;
+			}
+		}
+	}
+}

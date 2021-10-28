@@ -1,0 +1,17 @@
+.item {
+	border: 1px solid #e3e3e3;
+	border-radius: 4px;
+	padding: 19px;
+    margin-top: 15px;
+	.title {
+		color: #ee4444;
+		font-size: 22px;
+	}
+	ul {
+		margin-top: 10px;
+		li {
+			line-height: 25px;
+			position: relative;
+		}
+	}
+}

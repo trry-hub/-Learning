@@ -1,0 +1,43 @@
+.nav-wrapper {
+	position: sticky;
+	z-index: 10;
+	top: 0;
+	.nav-wrap {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		border-bottom: 1px solid #e7e7e7;
+		padding: 5px 30px;
+		box-sizing: border-box;
+		align-items: center;
+		justify-content: space-between;
+		background: transparent;
+		backdrop-filter: blur(5px);
+		.left-grid {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0 20px;
+			align-items: center;
+			.btn {
+				padding: 10px;
+				text-decoration: none;
+				color: #428bca;
+				&:hover {
+					color: #60acee !important;
+				}
+			}
+			:global(.active) {
+				color: #428bca;
+				box-shadow: none;
+				text-decoration: underline;
+			}
+		}
+		&.shadow {
+			box-shadow: 0 0 20px #e0e0e0;
+		}
+		.logo {
+			width: 50px;
+			object-fit: cover;
+		}
+	}
+}

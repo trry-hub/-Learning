@@ -1,0 +1,39 @@
+{
+	"name": "trry-blog",
+	"version": "0.0.0",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"serve": "vite preview",
+		"new": "plop"
+	},
+	"dependencies": {
+		"animejs": "^3.2.1",
+		"antd": "^4.16.6",
+		"axios": "^0.21.1",
+		"for-editor": "^0.3.5",
+		"nanoid": "^3.1.23",
+		"node-sass": "^6.0.1",
+		"normalize.css": "^8.0.1",
+		"plop": "^2.7.4",
+		"qs": "^6.10.1",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-redux": "^7.2.4",
+		"react-router": "^5.2.0",
+		"react-router-dom": "^5.2.0",
+		"redux": "^4.1.0",
+		"redux-devtools-extension": "^2.13.9",
+		"redux-thunk": "^2.3.0",
+		"sass-loader": "^12.1.0",
+		"vite-plugin-svg-sprite-component": "^1.0.8"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-react-refresh": "^1.3.4",
+		"less": "^4.1.1",
+		"less-vars-to-js": "^1.3.0",
+		"sass": "^1.35.1",
+		"vite": "^2.3.8",
+		"vite-plugin-imp": "^2.0.7"
+	}
+}

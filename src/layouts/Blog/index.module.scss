@@ -1,0 +1,32 @@
+.layout-wrap {
+	width: 100%;
+	min-height: calc(100vh - 1px);
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+    box-sizing: border-box;
+}
+.go-top {
+	position: fixed;
+	transform: scale(0);
+	transition: all 0.3s;
+}
+.show-icon {
+	position: fixed;
+	display: block;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	bottom: 60px;
+	right: 70px;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: all 0.3s;
+	transform: scale(1);
+	color: #428bca;
+	&:hover {
+		box-shadow: 0 0 20px #ff6700;
+	}
+	.go-top-icon {
+		font-size: 35px;
+	}
+}

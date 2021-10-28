@@ -1,0 +1,19 @@
+.diary-wrap {
+	// diary-wrap
+	padding: 10px 15px;
+	border: 1px solid #e3e3e3;
+	border-radius: 4px;
+	.sub-title {
+		color: #777;
+		margin-left: 10px;
+	}
+	.wrap-content {
+		margin: 20px 0;
+		.date {
+			margin-right: 10px;
+		}
+		.item {
+			line-height: 1.8em;
+		}
+	}
+}

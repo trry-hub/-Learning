@@ -4,11 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "vitepress dev docs",
+    "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "commit": "GH=1 rm -rf docs/.vitepress/dist yarn docs:build && bash scripts/deploy.sh"
+    "docs:serve": "vitepress serve docs",
+    "docs:commit": "GH=1 rm -rf docs/.vitepress/dist yarn docs:build && bash scripts/deploy.sh"
   },
   "devDependencies": {
+    "sass": "^1.43.4",
     "vitepress": "^0.20.0"
   }
 }

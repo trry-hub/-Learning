@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { withRouter, Switch } from 'react-router'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import { router } from '@/router'
+import { blog } from '@/router/blog'
+
+import Classify from '@/pages/blog/classify'
 
 const RouterView = (props) => {
 	const { routers } = props
-	const [routerDate] = useState(routers ? routers : router)
+	const [routerDate] = useState(routers ? routers : blog)
 	const [routerDatepath, setrouterDatepath] = useState([])
 	const [defaultRedirect, setdefaultRedirect] = useState([])
 
@@ -19,54 +21,40 @@ const RouterView = (props) => {
 		let tempRedirect = routerDate.filter(
 			(item) => item.redirect && item.path.indexOf('http') === -1
 		)
+		console.log('tempRedirect', tempRedirect);
 		//重定向
-		let defaultRedirect = tempRedirect.map(({ pathname, meta, component, children, exact = true }, i) => {
-			const Com = component
-			return children ? (
-				<Route exact={exact} key={i}>
-					<Com render={() => <RouterView routers={children} />} />
-				</Route>
-			) : (
-				<Redirect key={i} to={item.redirect}></Redirect>
-			)
+		let defaultRedirect = tempRedirect.map(({ path, meta, redirect, element: Comp, children }, i) => {
+			if (redirect) {
+				return ''
+			} else {
+				return <Routes >
+					<Route path={path} element={<h2 key={path + i}>123</h2>}></Route>
+				</Routes>
+			}
 		})
 		setdefaultRedirect(defaultRedirect)
+
+		console.log(defaultRedirect);
 	}, [routerDate])
 
+	function navigateTo(path) {
+		const navigate = useNavigate()
+		navigate(path)
+	}
+
 	return (
-		<Switch>
-			{routerDatepath
-				?.map(({ pathname, meta, component, children, exact = true }, index) => {
-					const Comp = component
-					return (
-						<Route
-							path={pathname}
-							exact={exact}
-							render={
-								//api 路由相关参数参数及其它
-								(arg) => {
-									//动态的title
-									document.title = 'trry-' + meta?.title || 'blog'
-									//把下一级路由参数存入props中
-									return children ? (
-										<Route exact={exact} key={index}>
-											<Comp
-												render={() => <RouterView routers={children} />}
-											/>
-										</Route>
-									) : (
-										<Comp {...arg} />
-									)
-								}
-							}
-							key={'key' + index}
-						></Route>
-					)
-					//重定向
-				})
-				.concat(defaultRedirect)}
-		</Switch>
+		<>
+			{routerDatepath?.map(({ path, meta, element: Comp, children }, index) => {
+				return (
+					!children ? <Routes key={index}>
+						<Route path={path} element={<Comp />} />
+					</Routes> : path !== '' && <Comp key={path + index} render={() => <RouterView routers={children} />} />
+				)
+				//重定向
+			}).concat(defaultRedirect)
+			}
+		</>
 	)
 }
 
-export default withRouter(RouterView)
+export default RouterView

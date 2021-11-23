@@ -3,7 +3,7 @@ import { lazy } from 'react'
 export const blog = [
 	{
 		path: 'index',
-		component: lazy(() => import('@/pages/blog/Index')),
+		element: lazy(() => import('@/pages/blog/Index')),
 		meta: {
 			title: '首页',
 			nav: true
@@ -12,11 +12,11 @@ export const blog = [
 	{
 		path: '',
 		redirect: '/blog/archive',
-		component: lazy(() => import('@/layouts/BlogList')),
+		element: lazy(() => import('@/layouts/BlogList')),
 		children: [
 			{
 				path: 'archive',
-				component: lazy(() => import('@/pages/blog/Archive')),
+				element: lazy(() => import('@/pages/blog/Archive')),
 				meta: {
 					title: '归档',
 					type: 'ListLayout',
@@ -25,7 +25,7 @@ export const blog = [
 			},
 			{
 				path: 'classify',
-				component: lazy(() => import('@/pages/blog/Classify')),
+				element: lazy(() => import('@/pages/blog/Classify')),
 				meta: {
 					title: '分类',
 					type: 'ListLayout',
@@ -34,7 +34,7 @@ export const blog = [
 			},
 			{
 				path: 'tag',
-				component: lazy(() => import('@/pages/blog/Tag')),
+				element: lazy(() => import('@/pages/blog/Tag')),
 				meta: {
 					title: '标签',
 					type: 'ListLayout',
@@ -43,7 +43,7 @@ export const blog = [
 			},
 			{
 				path: 'readbook',
-				component: lazy(() => import('@/pages/blog/Readbook')),
+				element: lazy(() => import('@/pages/blog/Readbook')),
 				meta: {
 					title: '读书',
 					type: 'ListLayout',
@@ -52,7 +52,7 @@ export const blog = [
 			},
 			{
 				path: 'resource',
-				component: lazy(() => import('@/pages/blog/Resource')),
+				element: lazy(() => import('@/pages/blog/Resource')),
 				meta: {
 					title: '资源',
 					type: 'ListLayout',
@@ -75,7 +75,7 @@ export const blog = [
 			},
 			{
 				path: 'course',
-				component: lazy(() => import('@/pages/blog/Course')),
+				element: lazy(() => import('@/pages/blog/Course')),
 				meta: {
 					title: '历程',
 					type: 'ListLayout',
@@ -84,7 +84,7 @@ export const blog = [
 			},
 			{
 				path: 'track',
-				component: lazy(() => import('@/pages/blog/Track')),
+				element: lazy(() => import('@/pages/blog/Track')),
 				meta: {
 					title: '足迹',
 					type: 'ListLayout',
@@ -93,7 +93,7 @@ export const blog = [
 			},
 			{
 				path: 'diary',
-				component: lazy(() => import('@/pages/blog/Diary')),
+				element: lazy(() => import('@/pages/blog/Diary')),
 				meta: {
 					title: '日记',
 					type: 'ListLayout',
@@ -102,7 +102,7 @@ export const blog = [
 			},
 			{
 				path: 'about',
-				component: lazy(() => import('@/pages/blog/About')),
+				element: lazy(() => import('@/pages/blog/About')),
 				meta: {
 					title: '关于',
 					type: 'ListLayout',

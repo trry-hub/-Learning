@@ -1,14 +1,14 @@
 import style from "./app.module.scss";
 
-import React from "react";
-import { withRouter, Link } from "react-router-dom";
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 import SvgIcon from "@/components/SvgIcon";
 import { entranceList } from "@/router";
 
 const App = () => {
 	return (
-		<React.Fragment>
+		<Fragment>
 			<div className={style["bg"]}></div>
 			<div className={style["body"]}>
 				<div className={style["content"]}>
@@ -46,7 +46,7 @@ const App = () => {
 				<SvgIcon iconClass="xin" className={style["xin"]} />
 				不要等待，时机永远不会恰到好处。——拿破仑·希尔
 			</footer>
-		</React.Fragment>
+		</Fragment>
 	);
 };
-export default withRouter(App);
+export default App

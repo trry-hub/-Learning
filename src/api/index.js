@@ -13,9 +13,6 @@ const api = axios.create({
     // withCredentials: true
 })
 
-console.log(MODE);
-
-
 // 设置全局的请求次数，请求的间隙
 // api.defaults.retry = 4
 // api.defaults.retryDelay = 1000

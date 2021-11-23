@@ -3,7 +3,7 @@
  * [
  * 		{
  * 			path: '页面跳转路径',
- * 			component: '当前组件',
+ * 			element: '当前组件',
  * 			children: [子组件列表],
  * 			redirect: '路由重定向',
  * 			exact: exact 是否为严格模式 默认true。注意：本次封装对于有子路由的，exact一律设置为false
@@ -27,7 +27,7 @@ import Error from '@/pages/Error'
 const router = [
 	{
 		path: '/blog',
-		component: lazy(() => import('@/layouts/Blog')),
+		element: lazy(() => import('@/layouts/Blog')),
 		children: blog,
 		meta: {
 			title: 'Blog',
@@ -77,7 +77,7 @@ const router = [
 	},
 	{
 		path: '*',
-		component: Error,
+		element: Error,
 		exact: false
 	}
 ]

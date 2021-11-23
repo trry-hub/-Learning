@@ -2,8 +2,8 @@
 import css from './index.module.scss'
 
 // 引入三方库
-import React, { useState, useEffect, useMemo, useRef, Suspense, lazy, Fragment } from 'react'
-import { withRouter } from 'react-router-dom'
+import React, { Suspense, lazy, Fragment } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 // 引入组件
@@ -17,6 +17,7 @@ import { blog } from '@/router/blog'
 
 import { useScrollHeight, useReStoreScrollTop } from '@/utils'
 
+
 const RouterView = lazy(() => import('@/components/RouterView'))
 
 // Blog UI组件
@@ -28,27 +29,22 @@ const Blog = (props) => {
 	const scrollTop = useScrollHeight()
 	return (
 		<Fragment>
-			<div className={css['layout-wrap']}>
-				<Nav scrollTop={scrollTop} />
-				<div className={css['layout-content']}>
-					{useMemo(
-						() => (
-							<Suspense fallback={<Loading />}>
-								<RouterView routers={blog} />
-							</Suspense>
-						),
-						[]
-					)}
+			<Suspense fallback={<Loading />}>
+				<div className={css['layout-wrap']}>
+					<Nav scrollTop={scrollTop} />
+					<div className={css['layout-content']}>
+						<RouterView routers={blog} />
+					</div>
+					<Footer scrollTop={scrollTop} />
 				</div>
-				<Footer scrollTop={scrollTop} />
-			</div>
-			<div
-				className={`${scrollTop > 100 ? css['show-icon'] : css['go-top']}`}
-				onClick={goTop}
-			>
-				<SvgIcon className={css['go-top-icon']} iconClass="goTop" />
-			</div>
-		</Fragment>
+				<div
+					className={`${scrollTop > 100 ? css['show-icon'] : css['go-top']}`}
+					onClick={goTop}
+				>
+					<SvgIcon className={css['go-top-icon']} iconClass="goTop" />
+				</div>
+			</Suspense>
+		</Fragment >
 	)
 }
 
@@ -62,4 +58,4 @@ const mapDispatchToProps = {
 	setScroll
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Blog))
+export default connect(mapStateToProps, mapDispatchToProps)(Blog)

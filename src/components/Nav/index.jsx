@@ -1,8 +1,7 @@
 import nav from "./index.module.scss";
 
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
-import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
 import { Button, Modal } from "antd";
 import Login from '@/components/Login'
 import { navList } from "@/router";
@@ -30,7 +29,7 @@ const Nav = (props) => {
   }
   const handleCancel = () => {
     console.log(123);
-    
+
     setModalVisible(false)
   }
 
@@ -52,13 +51,13 @@ const Nav = (props) => {
             />
             {list.map((item, index) => {
               return item.path.indexOf("http") === -1 ? (
-                <NavLink
+                <Link
                   to={{ pathname: item.pathname }}
                   className={`${nav["btn"]}`}
                   key={index}
                 >
                   {item.meta?.title}
-                </NavLink>
+                </Link>
               ) : (
                 <a
                   className={`${nav["btn"]}`}
@@ -77,11 +76,11 @@ const Nav = (props) => {
           </div>
         </div>
         <Modal visible={modalVisible} onOk={handleOk} onCancel={handleCancel}>
-          <Login ref={loginRef}/>
+          <Login ref={loginRef} />
         </Modal>
       </div>
     </React.Fragment>
   );
 };
 
-export default withRouter(Nav);
+export default Nav

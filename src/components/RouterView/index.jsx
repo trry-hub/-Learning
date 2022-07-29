@@ -1,60 +1,25 @@
-import React, { useState, useEffect } from 'react'
-import { Route, Routes, useNavigate } from 'react-router-dom'
-import { router } from '@/router'
-import { blog } from '@/router/blog'
-
-import Classify from '@/pages/blog/classify'
+import React from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
 const RouterView = (props) => {
-	const { routers } = props
-	const [routerDate] = useState(routers ? routers : blog)
-	const [routerDatepath, setrouterDatepath] = useState([])
-	const [defaultRedirect, setdefaultRedirect] = useState([])
+  console.log('%c [ props ]-5', 'font-size:13px; background:pink; color:#bf2c9f;', props.routers)
+  return (
+    <React.Fragment>
+      {location.pathname === '/blog' ? <Navigate replace to='/blog/index' /> : null}
+      <Routes>
+        {
+          ...props.routers.map(item => {
+            console.log('%c [ item ]-11', 'font-size:13px; background:pink; color:#bf2c9f;', item)
+            return <Route key={item.path} path={item.path} element={item.element} />
+          })
+        }
 
-	useEffect(() => {
-		//筛除带有重定向的
-		let routerDatepath = routerDate.filter((item) => {
-			return !item.redirect && item.path.indexOf('http') === -1
-		})
-		setrouterDatepath(routerDatepath)
-
-		let tempRedirect = routerDate.filter(
-			(item) => item.redirect && item.path.indexOf('http') === -1
-		)
-		console.log('tempRedirect', tempRedirect);
-		//重定向
-		let defaultRedirect = tempRedirect.map(({ path, meta, redirect, element: Comp, children }, i) => {
-			if (redirect) {
-				return ''
-			} else {
-				return <Routes >
-					<Route path={path} element={<h2 key={path + i}>123</h2>}></Route>
-				</Routes>
-			}
-		})
-		setdefaultRedirect(defaultRedirect)
-
-		console.log(defaultRedirect);
-	}, [routerDate])
-
-	function navigateTo(path) {
-		const navigate = useNavigate()
-		navigate(path)
-	}
-
-	return (
-		<>
-			{routerDatepath?.map(({ path, meta, element: Comp, children }, index) => {
-				return (
-					!children ? <Routes key={index}>
-						<Route path={path} element={<Comp />} />
-					</Routes> : path !== '' && <Comp key={path + index} render={() => <RouterView routers={children} />} />
-				)
-				//重定向
-			}).concat(defaultRedirect)
-			}
-		</>
-	)
+        {/* <Route element={}>
+          <Route></Route>
+        </Route> */}
+      </Routes>
+    </React.Fragment>
+  )
 }
 
 export default RouterView

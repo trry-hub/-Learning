@@ -1,6 +1,6 @@
 // 引入React
 import React from "react";
-import ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // 重置默认样式
@@ -19,17 +19,14 @@ import "@/utils";
 import App from "./App";
 import Blog from "@/layouts/Blog";
 
-ReactDOM.render(
-	// 此处需要用Provider包裹App，目的是让App所有的后代容器组件都能接收到store
-	<Provider store={store}>
-		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<App />} />
-				{/* <Redirect exact form="/blog" to="/blog/index" /> */}
-				<Route path="/blog/*" element={<Blog />}></Route>
-				<Route element={<Error />}></Route>
-			</Routes>
-		</BrowserRouter>
-	</Provider>,
-	document.getElementById("root")
-);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(// 此处需要用Provider包裹App，目的是让App所有的后代容器组件都能接收到store
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/blog/*" element={<Blog />}></Route>
+        <Route element={<Error />}></Route>
+      </Routes>
+    </BrowserRouter>
+  </Provider>)

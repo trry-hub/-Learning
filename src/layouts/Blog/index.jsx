@@ -22,40 +22,40 @@ const RouterView = lazy(() => import('@/components/RouterView'))
 
 // Blog UI组件
 const Blog = (props) => {
-	useReStoreScrollTop()
-	const goTop = () => {
-		document.body.scrollIntoView()
-	}
-	const scrollTop = useScrollHeight()
-	return (
-		<Fragment>
-			<Suspense fallback={<Loading />}>
-				<div className={css['layout-wrap']}>
-					<Nav scrollTop={scrollTop} />
-					<div className={css['layout-content']}>
-						<RouterView routers={blog} />
-					</div>
-					<Footer scrollTop={scrollTop} />
-				</div>
-				<div
-					className={`${scrollTop > 100 ? css['show-icon'] : css['go-top']}`}
-					onClick={goTop}
-				>
-					<SvgIcon className={css['go-top-icon']} iconClass="goTop" />
-				</div>
-			</Suspense>
-		</Fragment >
-	)
+  useReStoreScrollTop()
+  const goTop = () => {
+    document.body.scrollIntoView()
+  }
+  const scrollTop = useScrollHeight()
+  return (
+    <Fragment>
+      <Suspense fallback={<Loading />}>
+        <div className={css['layout-wrap']}>
+          <Nav scrollTop={scrollTop} />
+          <div className={css['layout-content']}>
+            <RouterView routers={blog} />
+          </div>
+          <Footer scrollTop={scrollTop} />
+        </div>
+        <div
+          className={`${scrollTop > 100 ? css['show-icon'] : css['go-top']}`}
+          onClick={goTop}
+        >
+          <SvgIcon className={css['go-top-icon']} iconClass="goTop" />
+        </div>
+      </Suspense>
+    </Fragment >
+  )
 }
 
 // redux中状态映射到props中
 const mapStateToProps = (state) => {
-	return { ...state }
+  return { ...state }
 }
 
 // redux中操作状态的方法映射到props中
 const mapDispatchToProps = {
-	setScroll
+  setScroll
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blog)

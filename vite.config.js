@@ -1,13 +1,13 @@
 import { defineConfig } from 'vite'
+import {resolve} from 'path'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import vitePluginImp from 'vite-plugin-imp'
 import lessToJS from 'less-vars-to-js'
 import svgSpritePlugin from 'vite-plugin-svg-sprite-component'
 
-const path = require('path')
 const fs = require('fs')
 const themeVariables = lessToJS(
-	fs.readFileSync(path.resolve(__dirname, './config/variables.less'), 'utf8')
+	fs.readFileSync(resolve(__dirname, './config/variables.less'), 'utf8')
 )
 
 // https://vitejs.dev/config/
@@ -28,9 +28,9 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			// 键必须以斜线开始和结束
-			'@': path.resolve(__dirname, './src'),
-			'~': path.resolve(__dirname, './') // 根路径
-			// '/@components/': path.resolve(__dirname, './src/components')
+			'@': resolve(__dirname, './src'),
+			'~': resolve(__dirname, './') // 根路径
+			// '/@components/': resolve(__dirname, './src/components')
 		}
 	},
 	css: {
